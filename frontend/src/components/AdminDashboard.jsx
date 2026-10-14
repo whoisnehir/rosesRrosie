@@ -10,9 +10,24 @@ const AdminDashboard = () => {
             <div className="w-64 bg-[#5C4033] text-white p-8 flex flex-col gap-8 shadow-2xl">
                 <div className="text-xl font-bold tracking-tighter border-b border-white/20 pb-4">ADMIN PANEL</div>
                 <nav className="flex flex-col gap-4">
-                    <TabButton active={activeTab === 'products'} icon={<Package size={20}/>} label="Products" onClick={() => setActiveTab('products')} />
-                    <TabButton active={activeTab === 'warehouses'} icon={<Warehouse size={20}/>} label="Warehouses" onClick={() => setActiveTab('warehouses')} />
-                    <TabButton active={activeTab === 'stocks'} icon={<BarChart3 size={20}/>} label="Stock Management" onClick={() => setActiveTab('stocks')} />
+                    <TabButton
+                        active={activeTab === 'products'}
+                        icon={<Package size={20} />}
+                        label="Products"
+                        onClick={() => setActiveTab('products')}
+                    />
+                    <TabButton
+                        active={activeTab === 'warehouses'}
+                        icon={<Warehouse size={20} />}
+                        label="Warehouses"
+                        onClick={() => setActiveTab('warehouses')}
+                    />
+                    <TabButton
+                        active={activeTab === 'stocks'}
+                        icon={<BarChart3 size={20} />}
+                        label="Stock Management"
+                        onClick={() => setActiveTab('stocks')}
+                    />
                 </nav>
             </div>
 
@@ -39,21 +54,25 @@ const ManageSection = ({ title, itemLabel }) => (
         </div>
         <table className="w-full text-left">
             <thead>
-            <tr className="text-[#A67C52] border-b border-[#E8B4B8]/30 uppercase text-[10px] tracking-widest">
-                <th className="py-4 px-2">ID</th>
-                <th className="py-4 px-2">Name / Details</th>
-                <th className="py-4 px-2 text-right">Actions</th>
-            </tr>
+                <tr className="text-[#A67C52] border-b border-[#E8B4B8]/30 uppercase text-[10px] tracking-widest">
+                    <th className="py-4 px-2">ID</th>
+                    <th className="py-4 px-2">Name / Details</th>
+                    <th className="py-4 px-2 text-right">Actions</th>
+                </tr>
             </thead>
             <tbody>
-            <tr className="border-b border-pink-50 hover:bg-pink-50/30 transition-colors">
-                <td className="py-4 px-2 font-mono text-xs">#001</td>
-                <td className="py-4 px-2 font-medium text-[#5C4033]">Sample {itemLabel} Name</td>
-                <td className="py-4 px-2 text-right">
-                    <button className="p-2 text-blue-400 hover:bg-blue-50 rounded-lg"><Edit size={16}/></button>
-                    <button className="p-2 text-red-400 hover:bg-red-50 rounded-lg ml-2"><Trash2 size={16}/></button>
-                </td>
-            </tr>
+                <tr className="border-b border-pink-50 hover:bg-pink-50/30 transition-colors">
+                    <td className="py-4 px-2 font-mono text-xs">#001</td>
+                    <td className="py-4 px-2 font-medium text-[#5C4033]">Sample {itemLabel} Name</td>
+                    <td className="py-4 px-2 text-right">
+                        <button className="p-2 text-blue-400 hover:bg-blue-50 rounded-lg">
+                            <Edit size={16} />
+                        </button>
+                        <button className="p-2 text-red-400 hover:bg-red-50 rounded-lg ml-2">
+                            <Trash2 size={16} />
+                        </button>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>
@@ -69,8 +88,14 @@ const StockSection = () => (
                     <p className="text-[#5C4033]">Warehouse: Bucharest</p>
                 </div>
                 <div className="flex items-center gap-4">
-                    <input type="number" defaultValue="45" className="w-20 p-2 rounded-xl text-center border-2 border-[#E8B4B8] text-[#5C4033] outline-none" />
-                    <button className="p-3 bg-[#5C4033] text-white rounded-xl shadow-lg hover:scale-105 transition-transform"><Save size={16}/></button>
+                    <input
+                        type="number"
+                        defaultValue="45"
+                        className="w-20 p-2 rounded-xl text-center border-2 border-[#E8B4B8] text-[#5C4033] outline-none"
+                    />
+                    <button className="p-3 bg-[#5C4033] text-white rounded-xl shadow-lg hover:scale-105 transition-transform">
+                        <Save size={16} />
+                    </button>
                 </div>
             </div>
         </div>
@@ -78,7 +103,10 @@ const StockSection = () => (
 );
 
 const TabButton = ({ active, icon, label, onClick }) => (
-    <button onClick={onClick} className={`flex items-center gap-3 p-4 rounded-2xl transition-all font-bold text-xs uppercase tracking-widest ${active ? 'bg-[#E8B4B8] text-white shadow-lg' : 'hover:bg-white/10'}`}>
+    <button
+        onClick={onClick}
+        className={`flex items-center gap-3 p-4 rounded-2xl transition-all font-bold text-xs uppercase tracking-widest ${active ? 'bg-[#E8B4B8] text-white shadow-lg' : 'hover:bg-white/10'}`}
+    >
         {icon} {label}
     </button>
 );

@@ -17,7 +17,9 @@ const WarehouseCard = ({ city, address, stock }) => (
             <Warehouse size={32} />
             <h2 className="text-2xl font-bold uppercase tracking-widest">{city}</h2>
         </div>
-        <p className="text-[#A67C52] flex items-center gap-2"><MapPin size={16}/> {address}</p>
+        <p className="text-[#A67C52] flex items-center gap-2">
+            <MapPin size={16} /> {address}
+        </p>
         <div className="mt-6 text-[10px] font-bold uppercase tracking-widest text-[#5C4033]">
             Availability: <span className="text-green-400">{stock} Stock</span>
         </div>

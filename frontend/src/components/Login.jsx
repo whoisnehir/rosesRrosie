@@ -34,8 +34,16 @@ const Login = ({ setIsLoggedIn, setUserRole }) => {
                         onChange={(e) => setEmail(e.target.value)}
                         required
                     />
-                    <input type="password" placeholder="Password" className="w-full bg-[#FDF0F2] p-4 rounded-2xl outline-none border border-transparent focus:border-[#E8B4B8] transition-all" required />
-                    <button type="submit" className="w-full bg-[#5C4033] text-white py-4 rounded-full font-bold uppercase tracking-widest shadow-lg hover:bg-[#4a3329]">
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        className="w-full bg-[#FDF0F2] p-4 rounded-2xl outline-none border border-transparent focus:border-[#E8B4B8] transition-all"
+                        required
+                    />
+                    <button
+                        type="submit"
+                        className="w-full bg-[#5C4033] text-white py-4 rounded-full font-bold uppercase tracking-widest shadow-lg hover:bg-[#4a3329]"
+                    >
                         Enter Sanctuary
                     </button>
                 </form>

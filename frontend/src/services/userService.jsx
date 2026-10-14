@@ -9,8 +9,8 @@ export const userService = {
             const response = await axios.patch(`${API_URL}/profile`, userDto);
             return response.data;
         } catch (error) {
-            console.error("Error updating profile:", error);
+            console.error('Error updating profile:', error);
             throw error;
         }
-    }
+    },
 };
