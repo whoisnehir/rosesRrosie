@@ -6,8 +6,8 @@ export const authService = {
     signUp: async (email, password) => {
         const response = await axios.post(`${API_URL}/signup`, {
             email: email,
-            password: password
+            password: password,
         });
-        return response.data; 	// Returns the string "User registered successfully!"
-    }
+        return response.data; // Returns the string "User registered successfully!"
+    },
 };

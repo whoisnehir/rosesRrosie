@@ -12,12 +12,11 @@ import WishlistPage from './components/WishlistPage';
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [userRole, setUserRole] = useState('USER'); 
+    const [userRole, setUserRole] = useState('USER');
 
     return (
         <Router>
             <Routes>
-                
                 <Route path="/" element={<HomePage isLoggedIn={isLoggedIn} userRole={userRole} />} />
 
                 <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} setUserRole={setUserRole} />} />
@@ -36,7 +35,6 @@ function App() {
                     element={isLoggedIn && userRole === 'USER' ? <WishlistPage /> : <Navigate to="/login" />}
                 />
 
-                
                 <Route
                     path="/admin"
                     element={isLoggedIn && userRole === 'ADMIN' ? <AdminDashboard /> : <Navigate to="/" />}
@@ -49,7 +47,8 @@ function App() {
 const RoleButton = ({ active, label, onClick }) => (
     <button
         onClick={onClick}
-        className={`px-3 py-1 rounded-full text-[9px] font-bold tracking-widest transition-colors ${active ? 'bg-[#E8B4B8] text-white' : 'bg-[#4a3329] text-white/70 hover:bg-[#5C4033] hover:text-white'}`}>
+        className={`px-3 py-1 rounded-full text-[9px] font-bold tracking-widest transition-colors ${active ? 'bg-[#E8B4B8] text-white' : 'bg-[#4a3329] text-white/70 hover:bg-[#5C4033] hover:text-white'}`}
+    >
         {label}
     </button>
 );
