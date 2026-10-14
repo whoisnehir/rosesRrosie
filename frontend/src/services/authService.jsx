@@ -8,6 +8,6 @@ export const authService = {
             email: email,
             password: password
         });
-        return response.data; // Va returna String-ul "User registered successfully!"
+        return response.data; 	// Returns the string "User registered successfully!"
     }
 };

@@ -9,7 +9,7 @@ const Login = ({ setIsLoggedIn, setUserRole }) => {
     const handleLogin = (e) => {
         e.preventDefault();
 
-        // LOGICA DE SIMULARE (Sub capotă va fi verificarea JWT-ului din Spring Boot)
+        // TODO(v1.1): simulated login, to be replaced by JWT verification from the Spring Boot API
         if (email.toLowerCase().includes('admin')) {
             setIsLoggedIn(true);
             setUserRole('ADMIN');
