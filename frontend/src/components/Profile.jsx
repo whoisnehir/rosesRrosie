@@ -6,19 +6,17 @@ import { User, Mail, Settings, ShoppingBag, ArrowLeft, Save, MapPin, Phone, Cred
 const Profile = () => {
     const navigate = useNavigate();
 
-    // State-uri pentru gestionarea interfeței
     const [view, setView] = useState('dashboard'); // dashboard | settings | orders
     const [user, setUser] = useState(null);
     const [formData, setFormData] = useState({});
     const [loading, setLoading] = useState(true);
 
-    // Încărcăm datele de la backend (GET /api/users/1)
     useEffect(() => {
         const fetchUser = async () => {
             try {
                 const data = await userService.getUserProfile(1);
                 setUser(data);
-                setFormData(data); // Pregătim datele pentru formular
+                setFormData(data);
                 setLoading(false);
             } catch (err) {
                 console.error("Error loading user", err);
@@ -31,12 +29,13 @@ const Profile = () => {
     const handleUpdate = async (e) => {
         e.preventDefault();
         try {
-            // Trimitem formData către metoda ta din Java: changeUserProfileInfo
+            
             const updated = await userService.updateProfile(formData);
             setUser(updated);
             setView('dashboard');
             alert("✨ Settings updated successfully!");
         } catch (err) {
+            console.error("Error updating profile:", err);
             alert("Error updating profile.");
         }
     };
