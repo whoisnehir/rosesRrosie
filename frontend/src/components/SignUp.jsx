@@ -14,7 +14,10 @@ const SignUp = () => {
             await authService.signUp(email, password);
             alert("Success! Welcome to the garden.");
             navigate('/'); 
-        } catch (err) { alert("Registration failed."); }
+        } catch (err) { 
+            console.error("Registration failed:", err);
+            alert("Registration failed.");
+        }
     };
 
     return (

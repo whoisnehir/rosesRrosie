@@ -6,19 +6,17 @@ import { User, Mail, Settings, ShoppingBag, ArrowLeft, Save, MapPin, Phone, Cred
 const Profile = () => {
     const navigate = useNavigate();
 
-    // State-uri pentru gestionarea interfeței
     const [view, setView] = useState('dashboard'); // dashboard | settings | orders
     const [user, setUser] = useState(null);
     const [formData, setFormData] = useState({});
     const [loading, setLoading] = useState(true);
 
-    // Încărcăm datele de la backend (GET /api/users/1)
     useEffect(() => {
         const fetchUser = async () => {
             try {
                 const data = await userService.getUserProfile(1);
                 setUser(data);
-                setFormData(data); // Pregătim datele pentru formular
+                setFormData(data);
                 setLoading(false);
             } catch (err) {
                 console.error("Error loading user", err);
@@ -31,12 +29,13 @@ const Profile = () => {
     const handleUpdate = async (e) => {
         e.preventDefault();
         try {
-            // Trimitem formData către metoda ta din Java: changeUserProfileInfo
+            
             const updated = await userService.updateProfile(formData);
             setUser(updated);
             setView('dashboard');
             alert("✨ Settings updated successfully!");
         } catch (err) {
+            console.error("Error updating profile:", err);
             alert("Error updating profile.");
         }
     };
@@ -53,7 +52,7 @@ const Profile = () => {
                     <ArrowLeft size={16} /> {view === 'dashboard' ? 'Back to Shop' : 'Back to Profile'}
                 </button>
 
-                {/* SIDEBAR: Info de bază (Vizibil mereu) */}
+                {/* SIDEBAR: Info */}
                 <div className="md:w-1/3 bg-[#FDF0F2] p-10 pt-24 flex flex-col items-center border-r-2 border-[#E8B4B8]/30">
                     <div className="w-32 h-32 rounded-full border-4 border-white shadow-lg bg-white flex items-center justify-center text-[#E8B4B8] mb-6">
                         <User size={60} />
@@ -70,7 +69,7 @@ const Profile = () => {
                 {/* MAIN CONTENT Area */}
                 <div className="md:w-2/3 p-14 pt-24 relative">
 
-                    {/* SCENA 1: DASHBOARD (Butoanele principale) */}
+                    {/* View 1: DASHBOARD */}
                     {view === 'dashboard' && (
                         <div className="space-y-8 animate-in fade-in duration-500">
                             <h3 className="text-2xl text-[#A67C52] italic mb-10 border-b border-[#E8B4B8]/40 pb-4 tracking-tight">Welcome to your Sanctuary</h3>
@@ -91,7 +90,7 @@ const Profile = () => {
                         </div>
                     )}
 
-                    {/* SCENA 2: ACCOUNT SETTINGS (Formularul tău) */}
+                    {/* View 2: ACCOUNT SETTINGS */}
                     {view === 'settings' && (
                         <div className="animate-in slide-in-from-right duration-500">
                             <h3 className="text-2xl text-[#A67C52] italic mb-8 flex items-center gap-3">
@@ -114,7 +113,7 @@ const Profile = () => {
                         </div>
                     )}
 
-                    {/* SCENA 3: MY ORDERS (Placeholder) */}
+                    {/* View 3: MY ORDERS (Placeholder) */}
                     {view === 'orders' && (
                         <div className="animate-in slide-in-from-right duration-500 text-center py-20">
                             <ShoppingBag size={48} className="mx-auto text-[#E8B4B8] opacity-30 mb-4" />
@@ -128,7 +127,7 @@ const Profile = () => {
     );
 };
 
-// Componente mici interne pentru organizare
+
 const MenuButton = ({ icon, title, desc, onClick }) => (
     <button onClick={onClick} className="w-full flex items-center gap-6 p-6 rounded-3xl bg-[#FFF5F6] border-2 border-transparent hover:border-[#E8B4B8] hover:bg-white transition-all text-left group">
         <div className="p-4 bg-white rounded-2xl text-[#E8B4B8] group-hover:text-[#5C4033] shadow-sm transition-colors">{icon}</div>

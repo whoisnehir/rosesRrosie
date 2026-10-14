@@ -10,7 +10,7 @@ const HomePage = ({ isLoggedIn, userRole }) => {
             <nav className="bg-white/90 backdrop-blur-md border-b border-[#E8B4B8] sticky top-0 z-50 px-8 py-4 shadow-sm text-[#5C4033]">
                 <div className="max-w-7xl mx-auto flex justify-between items-center">
                     <div onClick={() => navigate('/')} className="text-2xl font-bold tracking-tighter cursor-pointer">
-                        ROSES <span className="text-[#E8B4B8]">&</span> ROSIE
+                        roses<span className="text-[#E8B4B8]">R</span>rosie
                     </div>
 
                     <div className="flex items-center gap-6">

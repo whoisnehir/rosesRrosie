@@ -16,7 +16,7 @@ const AdminDashboard = () => {
                 </nav>
             </div>
 
-            {/* Zona de conținut */}
+            {/* Content zone */}
             <div className="flex-1 p-12 overflow-y-auto">
                 <div className="bg-white rounded-[2rem] p-10 shadow-xl border-2 border-[#E8B4B8]/20 min-h-full">
                     {activeTab === 'products' && <ManageSection title="Product Management" itemLabel="Product" />}
@@ -28,7 +28,7 @@ const AdminDashboard = () => {
     );
 };
 
-// Componentă generică pentru Adăugare/Ștergere (Produse/Depozite)
+// Generic add/delete section, reused for products and warehouses
 const ManageSection = ({ title, itemLabel }) => (
     <div className="animate-in fade-in duration-500">
         <div className="flex justify-between items-center mb-8">
