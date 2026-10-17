@@ -1,10 +1,14 @@
 # rosesRrosie
 
+**Live demo:** https://whoisnehir.github.io/rosesRrosie/
+
+> Demo project. No real products are sold. The live demo shows the frontend only; the backend is not deployed yet.
+
 Makeup e-commerce storefront.
 
 ## Status
 
-Work in progress. Version 1.0.0 (frontend) is due on 15 October 2026.
+Work in progress.
 
 ## Structure
 
