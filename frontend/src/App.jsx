@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
-import HomePage from './components/HomePage';
-import Profile from './components/Profile';
-import SignUp from './components/SignUp';
-import Login from './components/Login';
-import AdminDashboard from './components/AdminDashboard';
-import WarehousePage from './components/WarehousePage';
-import CartPage from './components/CartPage';
-import WishlistPage from './components/WishlistPage';
+import HomePage from './pages/HomePage';
+import Profile from './pages/Profile';
+import SignUp from './pages/SignUp';
+import Login from './pages/Login';
+import AdminDashboard from './pages/AdminDashboard';
+import WarehousePage from './pages/WarehousePage';
+import CartPage from './pages/CartPage';
+import WishlistPage from './pages/WishlistPage';
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);

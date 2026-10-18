@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { User, Heart, Warehouse, ShoppingCart, LogIn, Settings } from 'lucide-react';
-import ThemeToggle from './ThemeToggle';
+import ThemeToggle from '../components/ThemeToggle';
 
 const HomePage = ({ isLoggedIn, userRole }) => {
     const navigate = useNavigate();
