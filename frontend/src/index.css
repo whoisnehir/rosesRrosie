@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:italic,wght@400;700&display=swap');
 @import 'tailwindcss';
 
+/* dark: utilities follow the "dark" class instead of the system setting. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* Design tokens: every color and font used by the components lives here. */
 @theme {
     --font-sans: 'Montserrat', sans-serif;
@@ -28,6 +31,34 @@
 
     /* Borders and dividers */
     --color-line: #e8b4b8;
+}
+
+/* Dark theme ("Cacao"): the same tokens with new values, active when <html> has the "dark" class. */
+.dark {
+    color-scheme: dark;
+
+    /* Backgrounds */
+    --color-canvas: #1e1714;
+    --color-page: #221a16;
+    --color-surface: #2e231e;
+    --color-card: #2a201b;
+
+    /* Text */
+    --color-text: #e6d5cc;
+    --color-ink: #f3e4dc;
+    --color-secondary: #d9ad7c;
+    --color-muted: #bfa58f;
+
+    /* Actions */
+    --color-primary: #f3e4dc;
+    --color-primary-hover: #e2cbbf;
+    --color-on-primary: #3a2a24;
+    --color-accent: #e8b4b8;
+    --color-accent-hover: #f0c7ca;
+    --color-on-accent: #3a2a24;
+
+    /* Borders and dividers */
+    --color-line: #9a7175;
 }
 
 body {
