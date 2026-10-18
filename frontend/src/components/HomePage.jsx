@@ -1,6 +1,5 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { User, Heart, Warehouse, ShoppingCart, LogIn, UserPlus, Settings } from 'lucide-react';
+import { User, Heart, Warehouse, ShoppingCart, LogIn, Settings } from 'lucide-react';
 
 const HomePage = ({ isLoggedIn, userRole }) => {
     const navigate = useNavigate();

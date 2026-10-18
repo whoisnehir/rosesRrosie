@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 import HomePage from './components/HomePage';
@@ -43,14 +43,4 @@ function App() {
         </Router>
     );
 }
-
-const RoleButton = ({ active, label, onClick }) => (
-    <button
-        onClick={onClick}
-        className={`px-3 py-1 rounded-full text-[9px] font-bold tracking-widest transition-colors ${active ? 'bg-[#E8B4B8] text-white' : 'bg-[#4a3329] text-white/70 hover:bg-[#5C4033] hover:text-white'}`}
-    >
-        {label}
-    </button>
-);
-
 export default App;
