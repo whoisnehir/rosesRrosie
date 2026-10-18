@@ -1,33 +1,73 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;500&family=Playfair+Display:italic,wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:italic,wght@400;700&display=swap');
 @import 'tailwindcss';
-/*@tailwind base;*/
-/*@tailwind components;*/
-@tailwind utilities;
+
+/* dark: utilities follow the "dark" class instead of the system setting. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Design tokens: every color and font used by the components lives here. */
+@theme {
+    --font-sans: 'Montserrat', sans-serif;
+    --font-serif: 'Playfair Display', serif;
+
+    /* Backgrounds */
+    --color-canvas: #fffafa;
+    --color-page: #fff5f6;
+    --color-surface: #fdf0f2;
+    --color-card: #ffffff;
+
+    /* Text */
+    --color-text: #5a4347;
+    --color-ink: #5c4033;
+    --color-secondary: #a67c52;
+    --color-muted: #8b7355;
+
+    /* Actions */
+    --color-primary: #5c4033;
+    --color-primary-hover: #4a3329;
+    --color-on-primary: #ffffff;
+    --color-accent: #e8b4b8;
+    --color-accent-hover: #d99fa3;
+    --color-on-accent: #ffffff;
+
+    /* Borders and dividers */
+    --color-line: #e8b4b8;
+}
+
+/* Dark theme ("Cacao"): the same tokens with new values, active when <html> has the "dark" class. */
+.dark {
+    color-scheme: dark;
+
+    /* Backgrounds */
+    --color-canvas: #1e1714;
+    --color-page: #221a16;
+    --color-surface: #2e231e;
+    --color-card: #2a201b;
+
+    /* Text */
+    --color-text: #e6d5cc;
+    --color-ink: #f3e4dc;
+    --color-secondary: #d9ad7c;
+    --color-muted: #bfa58f;
+
+    /* Actions */
+    --color-primary: #f3e4dc;
+    --color-primary-hover: #e2cbbf;
+    --color-on-primary: #3a2a24;
+    --color-accent: #e8b4b8;
+    --color-accent-hover: #f0c7ca;
+    --color-on-accent: #3a2a24;
+
+    /* Borders and dividers */
+    --color-line: #9a7175;
+}
 
 body {
-    font-family: 'Montserrat', sans-serif;
-    background-color: #fffafa;
-    color: #5a4347;
+    font-family: var(--font-sans);
+    background-color: var(--color-canvas);
+    color: var(--color-text);
 }
 
 h1,
-h2,
-.font-serif {
-    font-family: 'Playfair Display', serif;
-}
-
-.vintage-border {
-    border: 2px solid #e8b4b8;
-    position: relative;
-}
-
-.vintage-border::after {
-    content: '';
-    position: absolute;
-    top: 3px;
-    left: 3px;
-    right: 3px;
-    bottom: 3px;
-    border: 1px solid #e8b4b8;
-    pointer-events: none;
+h2 {
+    font-family: var(--font-serif);
 }

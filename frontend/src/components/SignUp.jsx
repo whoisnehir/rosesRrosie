@@ -21,35 +21,35 @@ const SignUp = () => {
     };
 
     return (
-        <div className="min-h-screen bg-[#FFF5F6] flex items-center justify-center p-6 font-serif">
-            <div className="max-w-md w-full bg-white rounded-[2.5rem] shadow-2xl border-[3px] border-[#E8B4B8] p-10 text-center">
-                <Sparkles className="mx-auto text-[#E8B4B8] mb-4" size={32} />
-                <h2 className="text-3xl text-[#5C4033] mb-8 font-medium">Join Roses & Rosie</h2>
+        <div className="min-h-screen bg-page flex items-center justify-center p-6 font-serif">
+            <div className="max-w-md w-full bg-card rounded-[2.5rem] shadow-2xl border-[3px] border-line p-10 text-center">
+                <Sparkles className="mx-auto text-accent mb-4" size={32} />
+                <h2 className="text-3xl text-ink mb-8 font-medium">Join Roses & Rosie</h2>
                 <form onSubmit={handleRegister} className="space-y-6 text-left">
                     <input
                         type="email"
                         placeholder="Email"
                         onChange={(e) => setEmail(e.target.value)}
                         required
-                        className="w-full bg-[#FDF0F2] rounded-2xl p-4 outline-none border border-transparent focus:border-[#E8B4B8] transition-all"
+                        className="w-full bg-surface rounded-2xl p-4 outline-none border border-transparent focus:border-line transition-all"
                     />
                     <input
                         type="password"
                         placeholder="Password"
                         onChange={(e) => setPassword(e.target.value)}
                         required
-                        className="w-full bg-[#FDF0F2] rounded-2xl p-4 outline-none border border-transparent focus:border-[#E8B4B8] transition-all"
+                        className="w-full bg-surface rounded-2xl p-4 outline-none border border-transparent focus:border-line transition-all"
                     />
                     <button
                         type="submit"
-                        className="w-full bg-[#5C4033] text-white py-4 rounded-full font-bold uppercase tracking-widest hover:bg-[#4a3329] transition-all"
+                        className="w-full bg-primary text-on-primary py-4 rounded-full font-bold uppercase tracking-widest hover:bg-primary-hover transition-all"
                     >
                         Create Account
                     </button>
                 </form>
                 <button
                     onClick={() => navigate('/')}
-                    className="mt-8 text-[10px] uppercase text-[#A67C52] tracking-widest border-b border-[#A67C52]/30"
+                    className="mt-8 text-[10px] uppercase text-secondary tracking-widest border-b border-secondary/30"
                 >
                     Back Home
                 </button>

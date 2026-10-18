@@ -22,27 +22,27 @@ const Login = ({ setIsLoggedIn, setUserRole }) => {
     };
 
     return (
-        <div className="min-h-screen bg-[#FFF5F6] flex items-center justify-center p-6 font-serif">
-            <div className="max-w-md w-full bg-white rounded-[2.5rem] border-[3px] border-[#E8B4B8] p-12 shadow-2xl">
-                <LogIn className="mx-auto text-[#E8B4B8] mb-6" size={40} />
-                <h2 className="text-3xl text-center text-[#5C4033] mb-8 font-medium italic">Welcome Back</h2>
+        <div className="min-h-screen bg-page flex items-center justify-center p-6 font-serif">
+            <div className="max-w-md w-full bg-card rounded-[2.5rem] border-[3px] border-line p-12 shadow-2xl">
+                <LogIn className="mx-auto text-accent mb-6" size={40} />
+                <h2 className="text-3xl text-center text-ink mb-8 font-medium italic">Welcome Back</h2>
                 <form onSubmit={handleLogin} className="space-y-6">
                     <input
                         type="email"
                         placeholder="Email (use 'admin' for Admin Role)"
-                        className="w-full bg-[#FDF0F2] p-4 rounded-2xl outline-none border border-transparent focus:border-[#E8B4B8] transition-all"
+                        className="w-full bg-surface p-4 rounded-2xl outline-none border border-transparent focus:border-line transition-all"
                         onChange={(e) => setEmail(e.target.value)}
                         required
                     />
                     <input
                         type="password"
                         placeholder="Password"
-                        className="w-full bg-[#FDF0F2] p-4 rounded-2xl outline-none border border-transparent focus:border-[#E8B4B8] transition-all"
+                        className="w-full bg-surface p-4 rounded-2xl outline-none border border-transparent focus:border-line transition-all"
                         required
                     />
                     <button
                         type="submit"
-                        className="w-full bg-[#5C4033] text-white py-4 rounded-full font-bold uppercase tracking-widest shadow-lg hover:bg-[#4a3329]"
+                        className="w-full bg-primary text-on-primary py-4 rounded-full font-bold uppercase tracking-widest shadow-lg hover:bg-primary-hover"
                     >
                         Enter Sanctuary
                     </button>
