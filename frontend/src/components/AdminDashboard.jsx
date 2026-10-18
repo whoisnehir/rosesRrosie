@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Package, Warehouse, BarChart3, Plus, Trash2, Edit, Save } from 'lucide-react';
 
 const AdminDashboard = () => {
