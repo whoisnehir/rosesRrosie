@@ -1,14 +1,42 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:italic,wght@400;700&display=swap');
 @import 'tailwindcss';
 
+/* Design tokens: every color and font used by the components lives here. */
+@theme {
+    --font-sans: 'Montserrat', sans-serif;
+    --font-serif: 'Playfair Display', serif;
+
+    /* Backgrounds */
+    --color-canvas: #fffafa;
+    --color-page: #fff5f6;
+    --color-surface: #fdf0f2;
+    --color-card: #ffffff;
+
+    /* Text */
+    --color-text: #5a4347;
+    --color-ink: #5c4033;
+    --color-secondary: #a67c52;
+    --color-muted: #8b7355;
+
+    /* Actions */
+    --color-primary: #5c4033;
+    --color-primary-hover: #4a3329;
+    --color-on-primary: #ffffff;
+    --color-accent: #e8b4b8;
+    --color-accent-hover: #d99fa3;
+    --color-on-accent: #ffffff;
+
+    /* Borders and dividers */
+    --color-line: #e8b4b8;
+}
+
 body {
-    font-family: 'Montserrat', sans-serif;
-    background-color: #fffafa;
-    color: #5a4347;
+    font-family: var(--font-sans);
+    background-color: var(--color-canvas);
+    color: var(--color-text);
 }
 
 h1,
-h2,
-.font-serif {
-    font-family: 'Playfair Display', serif;
+h2 {
+    font-family: var(--font-serif);
 }
