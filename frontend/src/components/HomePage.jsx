@@ -30,7 +30,7 @@ const HomePage = ({ isLoggedIn, userRole }) => {
                                             label="Wishlist"
                                             onClick={() => navigate('/wishlist')}
                                         />
-                                        <div className="h-8 w-[1px] bg-line/30 mx-2"></div>
+                                        <div className="h-8 w-px bg-line/30 mx-2"></div>
                                         <NavIcon
                                             icon={<User size={20} />}
                                             label="My Profile"
@@ -39,7 +39,7 @@ const HomePage = ({ isLoggedIn, userRole }) => {
                                     </>
                                 ) : (
                                     <>
-                                        <div className="h-8 w-[1px] bg-line/30 mx-2"></div>
+                                        <div className="h-8 w-px bg-line/30 mx-2"></div>
                                         <button
                                             onClick={() => navigate('/admin')}
                                             className="flex items-center gap-2 bg-primary text-on-primary px-5 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-primary-hover"

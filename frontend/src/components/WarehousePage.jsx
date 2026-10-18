@@ -11,7 +11,7 @@ const WarehousePage = () => (
 );
 
 const WarehouseCard = ({ city, address, stock }) => (
-    <div className="bg-card p-8 rounded-[2rem] border-2 border-line shadow-lg">
+    <div className="bg-card p-8 rounded-4xl border-2 border-line shadow-lg">
         <div className="flex items-center gap-4 mb-4 text-accent">
             <Warehouse size={32} />
             <h2 className="text-2xl font-bold uppercase tracking-widest">{city}</h2>

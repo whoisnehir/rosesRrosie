@@ -33,7 +33,7 @@ const AdminDashboard = () => {
 
             {/* Content zone */}
             <div className="flex-1 p-12 overflow-y-auto">
-                <div className="bg-card rounded-[2rem] p-10 shadow-xl border-2 border-line/20 min-h-full">
+                <div className="bg-card rounded-4xl p-10 shadow-xl border-2 border-line/20 min-h-full">
                     {activeTab === 'products' && <ManageSection title="Product Management" itemLabel="Product" />}
                     {activeTab === 'warehouses' && <ManageSection title="Warehouse Management" itemLabel="Warehouse" />}
                     {activeTab === 'stocks' && <StockSection />}
