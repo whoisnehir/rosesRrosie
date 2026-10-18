@@ -6,6 +6,21 @@
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>rosesRrosie</title>
+        <script>
+            // Apply the saved theme (or the system one on a first visit) before the page is drawn,
+            // so a dark-theme visitor never sees a flash of the light theme.
+            (function () {
+                try {
+                    const savedTheme = localStorage.getItem('theme');
+                    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                        document.documentElement.classList.add('dark');
+                    }
+                } catch {
+                    // Storage can be blocked; the light theme is used.
+                }
+            })();
+        </script>
     </head>
     <body>
         <div id="root"></div>

@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { User, Heart, Warehouse, ShoppingCart, LogIn, Settings } from 'lucide-react';
+import ThemeToggle from './ThemeToggle';
 
 const HomePage = ({ isLoggedIn, userRole }) => {
     const navigate = useNavigate();
@@ -19,7 +20,7 @@ const HomePage = ({ isLoggedIn, userRole }) => {
                             onClick={() => navigate('/warehouses')}
                         />
                         <NavIcon icon={<ShoppingCart size={20} />} label="Cart" onClick={() => navigate('/cart')} />
-
+                        <ThemeToggle />
                         {isLoggedIn ? (
                             <>
                                 {userRole === 'USER' ? (
