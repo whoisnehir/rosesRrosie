@@ -1,7 +1,7 @@
 import { MapPin, Warehouse } from 'lucide-react';
 
 const WarehousePage = () => (
-    <div className="min-h-screen bg-page p-12 font-serif text-ink">
+    <div className="flex-1 p-12 font-serif text-ink">
         <h1 className="text-4xl text-center mb-12 italic text-secondary">Our Magical Warehouses</h1>
         <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
             <WarehouseCard city="Bucharest" address="Central Rose Garden, Sector 1" stock="High" />
