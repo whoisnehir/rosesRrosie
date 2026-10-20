@@ -1,10 +1,11 @@
 import { Link, NavLink } from 'react-router-dom';
 import { Heart, ShoppingCart, User, Warehouse } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
+import CollectionsMenu from './CollectionsMenu';
 
 const menuLinks = [
     { to: '/new', label: 'New' },
-    { to: '/collections', label: 'Collections' },
+    { to: '/collections', label: 'Collections', hasDropdown: true },
     { to: '/best-sellers', label: 'Best Sellers' },
     { to: '/shop', label: 'Shop All' },
 ];
@@ -24,14 +25,18 @@ const Navbar = () => (
             </Link>
 
             <ul className="flex items-center gap-8">
-                {menuLinks.map(({ to, label }) => (
+                {menuLinks.map(({ to, label, hasDropdown }) => (
                     <li key={to}>
-                        <NavLink
-                            to={to}
-                            className="relative py-1 text-xs font-bold uppercase tracking-widest transition-colors hover:text-accent after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-accent after:transition-all aria-[current=page]:text-accent aria-[current=page]:after:w-full"
-                        >
-                            {label}
-                        </NavLink>
+                        {hasDropdown ? (
+                            <CollectionsMenu />
+                        ) : (
+                            <NavLink
+                                to={to}
+                                className="relative py-1 text-xs font-bold uppercase tracking-widest transition-colors hover:text-accent after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-accent after:transition-all aria-[current=page]:text-accent aria-[current=page]:after:w-full"
+                            >
+                                {label}
+                            </NavLink>
+                        )}
                     </li>
                 ))}
             </ul>
