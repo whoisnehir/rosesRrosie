@@ -28,7 +28,7 @@ const Navbar = () => (
                     <li key={to}>
                         <NavLink
                             to={to}
-                            className="text-xs font-bold uppercase tracking-widest hover:text-accent transition-colors"
+                            className="relative py-1 text-xs font-bold uppercase tracking-widest transition-colors hover:text-accent after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-accent after:transition-all aria-[current=page]:text-accent aria-[current=page]:after:w-full"
                         >
                             {label}
                         </NavLink>
@@ -42,7 +42,7 @@ const Navbar = () => (
                     <NavLink
                         key={to}
                         to={to}
-                        className="flex flex-col items-center hover:text-accent transition-all group"
+                        className="flex flex-col items-center hover:text-accent transition-all group aria-[current=page]:text-accent"
                     >
                         <span className="group-hover:scale-110 transition-transform">
                             <Icon size={20} />
