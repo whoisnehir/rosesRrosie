@@ -22,7 +22,7 @@ const Login = ({ setIsLoggedIn, setUserRole }) => {
     };
 
     return (
-        <div className="min-h-screen bg-page flex items-center justify-center p-6 font-serif">
+        <div className="flex-1 flex items-center justify-center p-6 font-serif">
             <div className="max-w-md w-full bg-card rounded-[2.5rem] border-[3px] border-line p-12 shadow-2xl">
                 <LogIn className="mx-auto text-accent mb-6" size={40} />
                 <h2 className="text-3xl text-center text-ink mb-8 font-medium italic">Welcome Back</h2>

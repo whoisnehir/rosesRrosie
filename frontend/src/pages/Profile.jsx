@@ -52,13 +52,13 @@ const Profile = () => {
 
     if (loading)
         return (
-            <div className="min-h-screen bg-page flex items-center justify-center font-serif italic text-secondary">
+            <div className="flex-1 flex items-center justify-center font-serif italic text-secondary">
                 Opening the sanctuary...
             </div>
         );
 
     return (
-        <div className="min-h-screen bg-page flex items-center justify-center p-8 font-serif">
+        <div className="flex-1 flex items-center justify-center p-8 font-serif">
             <div className="max-w-4xl w-full bg-card shadow-2xl rounded-[3rem] border-[6px] border-line relative overflow-hidden flex flex-col md:flex-row min-h-[600px]">
                 {/* Buton Back general */}
                 <button

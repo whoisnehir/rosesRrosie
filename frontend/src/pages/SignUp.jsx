@@ -21,7 +21,7 @@ const SignUp = () => {
     };
 
     return (
-        <div className="min-h-screen bg-page flex items-center justify-center p-6 font-serif">
+        <div className="flex-1 flex items-center justify-center p-6 font-serif">
             <div className="max-w-md w-full bg-card rounded-[2.5rem] shadow-2xl border-[3px] border-line p-10 text-center">
                 <Sparkles className="mx-auto text-accent mb-4" size={32} />
                 <h2 className="text-3xl text-ink mb-8 font-medium">Join Roses & Rosie</h2>
