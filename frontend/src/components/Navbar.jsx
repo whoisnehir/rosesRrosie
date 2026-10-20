@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { Heart, Menu, ShoppingCart, User, Warehouse, X } from 'lucide-react';
 import CollectionsMenu from './CollectionsMenu';
@@ -19,20 +19,17 @@ const iconLinks = [
     { to: '/profile', label: 'Profile', Icon: User },
 ];
 
+// On phones, Profile and Cart sit in the header itself, so the menu panel lists only the other pages.
+const mobileMenuIconLinks = iconLinks.filter(({ to }) => to !== '/profile' && to !== '/cart');
+
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const headerRef = useRef(null);
 
-    // While the mobile menu is open, close it on a click outside the header or on the Escape key.
+    // While the mobile menu is open: the page behind it cannot scroll, Escape closes it,
+    // and it closes by itself if the screen becomes wide enough for the desktop navbar.
     useEffect(() => {
         if (!isMenuOpen) {
             return;
-        }
-
-        function handleClickOutside(event) {
-            if (!headerRef.current.contains(event.target)) {
-                setIsMenuOpen(false);
-            }
         }
 
         function handleEscape(event) {
@@ -41,12 +38,21 @@ const Navbar = () => {
             }
         }
 
-        document.addEventListener('mousedown', handleClickOutside);
+        const desktopQuery = window.matchMedia('(min-width: 768px)');
+        function handleScreenChange(event) {
+            if (event.matches) {
+                setIsMenuOpen(false);
+            }
+        }
+
+        document.body.style.overflow = 'hidden';
         document.addEventListener('keydown', handleEscape);
+        desktopQuery.addEventListener('change', handleScreenChange);
 
         return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
+            document.body.style.overflow = '';
             document.removeEventListener('keydown', handleEscape);
+            desktopQuery.removeEventListener('change', handleScreenChange);
         };
     }, [isMenuOpen]);
 
@@ -54,13 +60,25 @@ const Navbar = () => {
 
     return (
         <header
-            ref={headerRef}
-            className="sticky top-0 z-50 bg-card/90 backdrop-blur-md border-b border-line shadow-sm text-ink"
+            className={`sticky top-0 z-50 backdrop-blur-md border-b border-line shadow-sm text-ink ${isMenuOpen ? 'h-dvh flex flex-col bg-card md:h-auto md:bg-card/90' : 'bg-card/90'}`}
         >
             <nav
                 aria-label="Main"
-                className="max-w-7xl mx-auto px-6 lg:px-8 py-4 flex items-center justify-between gap-6"
+                className="w-full max-w-7xl mx-auto px-6 lg:px-8 py-4 grid grid-cols-[1fr_auto_1fr] items-center gap-4 md:flex md:justify-between md:gap-6"
             >
+                <div className="flex md:hidden items-center gap-4">
+                    <button
+                        type="button"
+                        onClick={() => setIsMenuOpen((open) => !open)}
+                        aria-expanded={isMenuOpen}
+                        aria-controls="mobile-menu"
+                        aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+                        className="hover:text-accent"
+                    >
+                        {isMenuOpen ? <X size={26} /> : <Menu size={26} />}
+                    </button>
+                </div>
+
                 <Link to="/" onClick={closeMenu} className="text-2xl font-bold tracking-tighter">
                     roses<span className="text-accent">R</span>rosie
                 </Link>
@@ -101,7 +119,15 @@ const Navbar = () => {
                     ))}
                 </div>
 
-                <div className="flex md:hidden items-center gap-5">
+                <div className="flex md:hidden items-center justify-end gap-4">
+                    <NavLink
+                        to="/profile"
+                        onClick={closeMenu}
+                        aria-label="Profile"
+                        className="hover:text-accent aria-[current=page]:text-accent"
+                    >
+                        <User size={22} />
+                    </NavLink>
                     <NavLink
                         to="/cart"
                         onClick={closeMenu}
@@ -110,21 +136,16 @@ const Navbar = () => {
                     >
                         <ShoppingCart size={22} />
                     </NavLink>
-                    <button
-                        type="button"
-                        onClick={() => setIsMenuOpen((open) => !open)}
-                        aria-expanded={isMenuOpen}
-                        aria-controls="mobile-menu"
-                        aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-                        className="hover:text-accent"
-                    >
-                        {isMenuOpen ? <X size={26} /> : <Menu size={26} />}
-                    </button>
                 </div>
             </nav>
 
             {isMenuOpen && (
-                <MobileMenu id="mobile-menu" menuLinks={menuLinks} iconLinks={iconLinks} onNavigate={closeMenu} />
+                <MobileMenu
+                    id="mobile-menu"
+                    menuLinks={menuLinks}
+                    iconLinks={mobileMenuIconLinks}
+                    onNavigate={closeMenu}
+                />
             )}
         </header>
     );
