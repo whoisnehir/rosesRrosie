@@ -4,13 +4,7 @@ import { Heart, Menu, ShoppingCart, User, Warehouse, X } from 'lucide-react';
 import CollectionsMenu from './CollectionsMenu';
 import MobileMenu from './MobileMenu';
 import ThemeToggle from './ThemeToggle';
-
-const menuLinks = [
-    { to: '/new', label: 'New' },
-    { to: '/collections', label: 'Collections', hasDropdown: true },
-    { to: '/best-sellers', label: 'Best Sellers' },
-    { to: '/shop', label: 'Shop All' },
-];
+import { menuLinks } from '../data/navigation';
 
 const iconLinks = [
     { to: '/warehouses', label: 'Warehouses', Icon: Warehouse },
