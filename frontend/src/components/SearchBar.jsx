@@ -35,7 +35,7 @@ const SearchBar = ({ id, variant, onDone }) => {
                     aria-label="Search products and collections"
                     autoFocus
                     onFocus={(event) => event.target.select()}
-                    className="flex-1 min-w-0 bg-surface rounded-full px-5 py-3 text-sm text-ink placeholder:text-muted outline-none border border-transparent focus:border-line [&::-webkit-search-cancel-button]:appearance-none"
+                    className="flex-1 min-w-0 bg-surface rounded-full px-5 py-3 text-base md:text-sm text-ink placeholder:text-muted outline-none border border-transparent focus:border-line [&::-webkit-search-cancel-button]:appearance-none"
                 />
                 <button
                     type="submit"
