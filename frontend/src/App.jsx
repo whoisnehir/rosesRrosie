@@ -9,6 +9,7 @@ import CollectionPage from './pages/CollectionPage';
 import BestSellersPage from './pages/BestSellersPage';
 import ShopPage from './pages/ShopPage';
 import ProductPage from './pages/ProductPage';
+import SearchPage from './pages/SearchPage';
 import AboutPage from './pages/AboutPage';
 import HelpPage from './pages/HelpPage';
 import ContactPage from './pages/ContactPage';
@@ -37,6 +38,7 @@ function App() {
                     <Route path="/best-sellers" element={<BestSellersPage />} />
                     <Route path="/shop" element={<ShopPage />} />
                     <Route path="/product/:id" element={<ProductPage />} />
+                    <Route path="/search" element={<SearchPage />} />
                     <Route path="/about" element={<AboutPage />} />
                     <Route path="/help" element={<HelpPage />} />
                     <Route path="/contact" element={<ContactPage />} />
