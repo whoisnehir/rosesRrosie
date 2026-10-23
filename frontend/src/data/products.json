@@ -14,7 +14,13 @@
             { "name": "Peony", "hex": "#b5546a" },
             { "name": "Nude Petal", "hex": "#c99a8a" }
         ],
-        "images": []
+        "images": [
+            {
+                "src": "images/products/petal-velvet-lipstick.webp",
+                "alt": "Petal Velvet Lipstick, a rosy matte lipstick",
+                "credit": "Generated with Gemini"
+            }
+        ]
     },
     {
         "id": 2,
@@ -30,7 +36,13 @@
             { "name": "Peach Garden", "hex": "#f2a68c" },
             { "name": "Pink Garden", "hex": "#e98fa0" }
         ],
-        "images": []
+        "images": [
+            {
+                "src": "images/products/garden-blush-duo.webp",
+                "alt": "Garden Blush Duo, a compact with a peach and a pink blush",
+                "credit": "Generated with Gemini"
+            }
+        ]
     },
     {
         "id": 3,
@@ -46,7 +58,13 @@
             { "name": "Spring Warm", "hex": "#c48b72" },
             { "name": "Rosy Brown", "hex": "#9a6157" }
         ],
-        "images": []
+        "images": [
+            {
+                "src": "images/products/first-bloom-eyeshadow-palette.webp",
+                "alt": "First Bloom Eyeshadow Palette with warm spring shades",
+                "credit": "Generated with Gemini"
+            }
+        ]
     },
     {
         "id": 4,
@@ -63,7 +81,13 @@
             { "name": "Light", "hex": "#e3b89e" },
             { "name": "Medium", "hex": "#c99474" }
         ],
-        "images": []
+        "images": [
+            {
+                "src": "images/products/dewy-rose-skin-tint.webp",
+                "alt": "Dewy Rose Skin Tint, a light liquid foundation",
+                "credit": "Generated with Gemini"
+            }
+        ]
     },
     {
         "id": 5,
@@ -79,7 +103,13 @@
             { "name": "Icy Pink", "hex": "#f4c6d0" },
             { "name": "Frost Lilac", "hex": "#d8c2e6" }
         ],
-        "images": []
+        "images": [
+            {
+                "src": "images/products/frosted-petal-lip-gloss.webp",
+                "alt": "Frosted Petal Lip Gloss with a cool pink shimmer",
+                "credit": "Generated with Gemini"
+            }
+        ]
     },
     {
         "id": 6,
@@ -92,7 +122,13 @@
         "description": "A pearly pressed highlighter with a cool pink glow for the cheekbones and the brow bone.",
         "ingredients": "Mica, Talc, Synthetic Fluorphlogopite, Dimethicone, Tocopherol",
         "shades": [{ "name": "Pearl Frost", "hex": "#f3e3ea" }],
-        "images": []
+        "images": [
+            {
+                "src": "images/products/ice-bloom-highlighter.webp",
+                "alt": "Ice Bloom Highlighter, a pearly pressed powder",
+                "credit": "Generated with Gemini"
+            }
+        ]
     },
     {
         "id": 7,
@@ -108,7 +144,13 @@
             { "name": "Lavender Snow", "hex": "#c9b6dd" },
             { "name": "Silver Frost", "hex": "#cfd3da" }
         ],
-        "images": []
+        "images": [
+            {
+                "src": "images/products/snowdrop-shimmer-eyeshadow.webp",
+                "alt": "Snowdrop Shimmer Eyeshadow in lavender and silver",
+                "credit": "Generated with Gemini"
+            }
+        ]
     },
     {
         "id": 8,
@@ -121,7 +163,13 @@
         "description": "A weightless translucent powder that sets makeup and keeps shine away, with a cool pink tint.",
         "ingredients": "Silica, Mica, Zinc Stearate, Dimethicone, Tocopherol",
         "shades": [{ "name": "Translucent Rose", "hex": "#f1d9dc" }],
-        "images": []
+        "images": [
+            {
+                "src": "images/products/frozen-rose-setting-powder.webp",
+                "alt": "Frozen Rose Setting Powder, a translucent pink powder",
+                "credit": "Generated with Gemini"
+            }
+        ]
     },
     {
         "id": 9,
@@ -137,7 +185,13 @@
             { "name": "Wild Berry", "hex": "#8e2f4f" },
             { "name": "Plum Spell", "hex": "#6e2a4a" }
         ],
-        "images": []
+        "images": [
+            {
+                "src": "images/products/enchanted-berry-lip-stain.webp",
+                "alt": "Enchanted Berry Lip Stain in deep berry shades",
+                "credit": "Generated with Gemini"
+            }
+        ]
     },
     {
         "id": 10,
@@ -153,7 +207,13 @@
             { "name": "Pixie Gold", "hex": "#d4b26a" },
             { "name": "Moon Violet", "hex": "#9b7fc7" }
         ],
-        "images": []
+        "images": [
+            {
+                "src": "images/products/fairy-dust-glitter-liner.webp",
+                "alt": "Fairy Dust Glitter Liner, a fine-tip glitter eyeliner",
+                "credit": "Generated with Gemini"
+            }
+        ]
     },
     {
         "id": 11,
@@ -169,7 +229,13 @@
             { "name": "Moon Plum", "hex": "#a0567a" },
             { "name": "Dusk Mauve", "hex": "#b07d96" }
         ],
-        "images": []
+        "images": [
+            {
+                "src": "images/products/moonlit-blossom-blush.webp",
+                "alt": "Moonlit Blossom Blush in plum and mauve shades",
+                "credit": "Generated with Gemini"
+            }
+        ]
     },
     {
         "id": 12,
@@ -185,6 +251,12 @@
             { "name": "Midnight Black", "hex": "#1f1a1c" },
             { "name": "Deep Plum", "hex": "#4b2338" }
         ],
-        "images": []
+        "images": [
+            {
+                "src": "images/products/midnight-bloom-mascara.webp",
+                "alt": "Midnight Bloom Mascara in black and deep plum",
+                "credit": "Generated with Gemini"
+            }
+        ]
     }
 ]
