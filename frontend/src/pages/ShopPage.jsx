@@ -1,5 +1,70 @@
-import PlaceholderPage from '../components/PlaceholderPage';
+import { useEffect, useState } from 'react';
+import ProductCard from '../components/ProductCard';
+import { productService } from '../services/productService';
 
-const ShopPage = () => <PlaceholderPage title="Shop All" />;
+const ShopPage = () => {
+    const [products, setProducts] = useState([]);
+    // 'loading' while waiting for the service, then 'ready' or 'error'.
+    const [status, setStatus] = useState('loading');
+
+    useEffect(() => {
+        // Stops a late answer from updating the page after the visitor has left it.
+        let isCurrent = true;
+
+        productService
+            .getAll()
+            .then((data) => {
+                if (isCurrent) {
+                    setProducts(data);
+                    setStatus('ready');
+                }
+            })
+            .catch((error) => {
+                console.error('Could not load the products:', error);
+                if (isCurrent) {
+                    setStatus('error');
+                }
+            });
+
+        return () => {
+            isCurrent = false;
+        };
+    }, []);
+
+    return (
+        <section className="w-full max-w-7xl mx-auto px-6 lg:px-8 py-12">
+            <h1 className="text-5xl text-ink font-light text-center">Shop All</h1>
+
+            {status === 'loading' && (
+                <p role="status" className="mt-10 text-center text-secondary italic">
+                    Loading products...
+                </p>
+            )}
+
+            {status === 'error' && (
+                <p role="alert" className="mt-10 text-center text-secondary italic">
+                    We could not load the products. Please try again later.
+                </p>
+            )}
+
+            {status === 'ready' && products.length === 0 && (
+                <p className="mt-10 text-center text-secondary italic">There are no products yet.</p>
+            )}
+
+            {status === 'ready' && products.length > 0 && (
+                <>
+                    <p className="mt-3 text-center text-sm text-secondary italic">{products.length} products</p>
+                    <ul className="mt-10 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+                        {products.map((product) => (
+                            <li key={product.id}>
+                                <ProductCard product={product} />
+                            </li>
+                        ))}
+                    </ul>
+                </>
+            )}
+        </section>
+    );
+};
 
 export default ShopPage;
