@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import ProductCard from '../components/ProductCard';
+import ProductGrid from '../components/ProductGrid';
 import { productService } from '../services/productService';
 
 const ShopPage = () => {
@@ -54,13 +54,7 @@ const ShopPage = () => {
             {status === 'ready' && products.length > 0 && (
                 <>
                     <p className="mt-3 text-center text-sm text-secondary italic">{products.length} products</p>
-                    <ul className="mt-10 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-                        {products.map((product) => (
-                            <li key={product.id}>
-                                <ProductCard product={product} />
-                            </li>
-                        ))}
-                    </ul>
+                    <ProductGrid products={products} />
                 </>
             )}
         </section>
