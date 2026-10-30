@@ -5,6 +5,7 @@ import NotFoundPage from './NotFoundPage';
 import { collections } from '../data/collections';
 import { productService } from '../services/productService';
 import { formatPrice } from '../utils/formatPrice';
+import ProductDetailsTable from '../components/ProductDetailsTable';
 
 const ProductPage = () => {
     const { id } = useParams();
@@ -84,6 +85,9 @@ const ProductPage = () => {
                         </li>
                     ))}
                 </ul>
+            </div>
+            <div className="mt-12 mx-auto max-w-2xl">
+                <ProductDetailsTable product={product} />
             </div>
         </article>
     );
