@@ -74,33 +74,25 @@ const ShopPage = () => {
 
             {status === 'ready' && products.length > 0 && (
                 <>
-                    {status === 'ready' && products.length > 0 && (
-                        <>
-                            <ProductFilters
-                                category={category}
-                                skinType={skinType}
-                                sort={sort}
-                                onChange={changeFilter}
-                                onClear={clearFilters}
-                            />
-                            <p className="mt-6 text-center text-sm text-secondary italic">
-                                {shownProducts.length} of {products.length} products
-                            </p>
-                            {shownProducts.length > 0 ? (
-                                <ProductGrid products={shownProducts} />
-                            ) : (
-                                <p className="mt-10 text-center text-secondary italic">
-                                    No products match these filters.{' '}
-                                    <button
-                                        type="button"
-                                        onClick={clearFilters}
-                                        className="underline hover:text-accent"
-                                    >
-                                        Clear filters
-                                    </button>
-                                </p>
-                            )}
-                        </>
+                    <ProductFilters
+                        category={category}
+                        skinType={skinType}
+                        sort={sort}
+                        onChange={changeFilter}
+                        onClear={clearFilters}
+                    />
+                    <p className="mt-6 text-center text-sm text-secondary italic">
+                        {shownProducts.length} of {products.length} products
+                    </p>
+                    {shownProducts.length > 0 ? (
+                        <ProductGrid products={shownProducts} />
+                    ) : (
+                        <p className="mt-10 text-center text-secondary italic">
+                            No products match these filters.{' '}
+                            <button type="button" onClick={clearFilters} className="underline hover:text-accent">
+                                Clear filters
+                            </button>
+                        </p>
                     )}
                 </>
             )}
