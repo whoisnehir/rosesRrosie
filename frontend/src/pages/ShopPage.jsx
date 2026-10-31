@@ -1,11 +1,32 @@
 import { useEffect, useState } from 'react';
 import ProductGrid from '../components/ProductGrid';
 import { productService } from '../services/productService';
+import { useSearchParams } from 'react-router-dom';
+import ProductFilters from '../components/ProductFilters';
+import { filterAndSortProducts } from '../utils/filterProducts';
 
 const ShopPage = () => {
     const [products, setProducts] = useState([]);
     // 'loading' while waiting for the service, then 'ready' or 'error'.
     const [status, setStatus] = useState('loading');
+    // The filters live in the URL (/shop?category=lips&sort=price-asc), so a filtered view can be shared.
+    const [searchParams, setSearchParams] = useSearchParams();
+    const category = searchParams.get('category') ?? '';
+    const skinType = searchParams.get('skin') ?? '';
+    const sort = searchParams.get('sort') ?? '';
+    const shownProducts = filterAndSortProducts(products, { category, skinType, sort });
+
+    function changeFilter(key, value) {
+        const next = new URLSearchParams(searchParams);
+        if (value) {
+            next.set(key, value);
+        } else {
+            next.delete(key);
+        }
+        setSearchParams(next);
+    }
+
+    const clearFilters = () => setSearchParams({});
 
     useEffect(() => {
         // Stops a late answer from updating the page after the visitor has left it.
@@ -53,8 +74,34 @@ const ShopPage = () => {
 
             {status === 'ready' && products.length > 0 && (
                 <>
-                    <p className="mt-3 text-center text-sm text-secondary italic">{products.length} products</p>
-                    <ProductGrid products={products} />
+                    {status === 'ready' && products.length > 0 && (
+                        <>
+                            <ProductFilters
+                                category={category}
+                                skinType={skinType}
+                                sort={sort}
+                                onChange={changeFilter}
+                                onClear={clearFilters}
+                            />
+                            <p className="mt-6 text-center text-sm text-secondary italic">
+                                {shownProducts.length} of {products.length} products
+                            </p>
+                            {shownProducts.length > 0 ? (
+                                <ProductGrid products={shownProducts} />
+                            ) : (
+                                <p className="mt-10 text-center text-secondary italic">
+                                    No products match these filters.{' '}
+                                    <button
+                                        type="button"
+                                        onClick={clearFilters}
+                                        className="underline hover:text-accent"
+                                    >
+                                        Clear filters
+                                    </button>
+                                </p>
+                            )}
+                        </>
+                    )}
                 </>
             )}
         </section>
