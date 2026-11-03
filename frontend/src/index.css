@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:italic,wght@400;700&display=swap');
+
 @import 'tailwindcss';
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500&family=Playfair+Display:italic,wght@400;700&display=swap');
+
 
 /* dark: utilities follow the "dark" class instead of the system setting. */
 @custom-variant dark (&:where(.dark, .dark *));
