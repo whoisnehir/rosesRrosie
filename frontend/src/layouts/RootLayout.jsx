@@ -3,6 +3,7 @@ import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 import ScrollToTop from '../components/ScrollToTop';
 import ScrollButtons from '../components/ScrollButtons';
+import HelpButton from '../components/HelpButton';
 
 // Shared frame of every public page: the fixed header, the current page and the footer.
 const RootLayout = () => (
