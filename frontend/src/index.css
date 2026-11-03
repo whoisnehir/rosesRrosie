@@ -63,13 +63,16 @@
     --color-line: #9a7175;
 }
 
-body {
-    font-family: var(--font-sans);
-    background-color: var(--color-canvas);
-    color: var(--color-text);
-}
+/* Default styles for plain elements. Inside the base layer, Tailwind classes such as font-script win over them. */
+@layer base {
+    body {
+        font-family: var(--font-sans);
+        background-color: var(--color-canvas);
+        color: var(--color-text);
+    }
 
-h1,
-h2 {
-    font-family: var(--font-serif);
+    h1,
+    h2 {
+        font-family: var(--font-serif);
+    }
 }
