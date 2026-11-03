@@ -42,7 +42,7 @@ const ScrollButtons = () => {
     const hiddenClasses = 'invisible opacity-0';
 
     return (
-          <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2">
             <button
                 type="button"
                 onClick={() => scrollToPosition(0)}
