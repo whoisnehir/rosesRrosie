@@ -13,7 +13,10 @@ const RootLayout = () => (
             <Outlet />
         </main>
         <Footer />
-        <ScrollButtons />
+        <div className="fixed bottom-6 right-6 z-40 flex flex-col gap-2">
+            <ScrollButtons />
+            <HelpButton />
+        </div>
     </div>
 );
 
