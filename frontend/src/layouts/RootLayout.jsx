@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 import ScrollToTop from '../components/ScrollToTop';
+import ScrollButtons from '../components/ScrollButtons';
 
 // Shared frame of every public page: the fixed header, the current page and the footer.
 const RootLayout = () => (
@@ -12,6 +13,7 @@ const RootLayout = () => (
             <Outlet />
         </main>
         <Footer />
+        <ScrollButtons />
     </div>
 );
 
