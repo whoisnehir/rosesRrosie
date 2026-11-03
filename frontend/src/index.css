@@ -1,6 +1,4 @@
-
 @import 'tailwindcss';
-
 
 /* dark: utilities follow the "dark" class instead of the system setting. */
 @custom-variant dark (&:where(.dark, .dark *));
