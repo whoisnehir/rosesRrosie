@@ -5,7 +5,7 @@ import { useMediaQuery } from '../hooks/useMediaQuery';
 // How close to the top or the bottom of the page (in pixels) counts as already being there.
 const EDGE_DISTANCE_PX = 200;
 
-// The two floating buttons in the bottom-right corner: one scrolls to the top of the page, the other to the bottom.
+// The two scroll buttons: one scrolls to the top of the page, the other to the bottom.
 // Each one hides when it has nothing left to do, so on a page too short to scroll both stay hidden.
 const ScrollButtons = () => {
     const [isNearTop, setIsNearTop] = useState(true);
@@ -42,7 +42,7 @@ const ScrollButtons = () => {
     const hiddenClasses = 'invisible opacity-0';
 
     return (
-        <div className="fixed bottom-6 right-6 z-40 flex flex-col gap-2">
+        <div className="flex flex-col gap-2">
             <button
                 type="button"
                 onClick={() => scrollToPosition(0)}
