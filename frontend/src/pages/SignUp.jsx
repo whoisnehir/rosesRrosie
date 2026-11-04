@@ -3,6 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { authService } from '../services/authService';
 import { Sparkles } from 'lucide-react';
 
+const labelClass = 'mb-2 block text-xs font-bold uppercase tracking-widest text-secondary';
+// A thin border at all times; the field in use gets the accent border and a soft ring, visible in both themes.
+const inputClass =
+    'w-full bg-surface p-4 rounded-2xl text-ink placeholder:text-muted border border-line/60 outline-none transition-colors focus:border-accent focus:ring-2 focus:ring-accent/30';
+
 const SignUp = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
@@ -26,20 +31,33 @@ const SignUp = () => {
                 <Sparkles className="mx-auto text-accent mb-4" size={32} />
                 <h2 className="text-3xl text-ink mb-8 font-medium">Join Roses & Rosie</h2>
                 <form onSubmit={handleRegister} className="space-y-6 text-left">
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                        className="w-full bg-surface rounded-2xl p-4 outline-none border border-transparent focus:border-line transition-all"
-                    />
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                        className="w-full bg-surface rounded-2xl p-4 outline-none border border-transparent focus:border-line transition-all"
-                    />
+                    <div>
+                        <label htmlFor="signup-email" className={labelClass}>
+                            Email
+                        </label>
+                        <input
+                            id="signup-email"
+                            type="email"
+                            autoComplete="email"
+                            placeholder="you@example.com"
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                            className={inputClass}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="signup-password" className={labelClass}>
+                            Password
+                        </label>
+                        <input
+                            id="signup-password"
+                            type="password"
+                            autoComplete="new-password"
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                            className={inputClass}
+                        />
+                    </div>
                     <button
                         type="submit"
                         className="w-full bg-primary text-on-primary py-4 rounded-full font-bold uppercase tracking-widest hover:bg-primary-hover transition-all"
