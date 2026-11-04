@@ -12,6 +12,8 @@ import {
     Phone,
     CreditCard,
     Fingerprint,
+    CircleAlert,
+    CircleCheck,
 } from 'lucide-react';
 
 const Profile = () => {
@@ -21,6 +23,8 @@ const Profile = () => {
     const [user, setUser] = useState(null);
     const [formData, setFormData] = useState({});
     const [loading, setLoading] = useState(true);
+    // 'idle' before saving, 'saving' while waiting for the server, then 'saved' or 'error'.
+    const [saveStatus, setSaveStatus] = useState('idle');
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -39,14 +43,15 @@ const Profile = () => {
 
     const handleUpdate = async (e) => {
         e.preventDefault();
+        setSaveStatus('saving');
         try {
             const updated = await userService.updateProfile(formData);
             setUser(updated);
             setView('dashboard');
-            alert('✨ Settings updated successfully!');
+            setSaveStatus('saved');
         } catch (err) {
             console.error('Error updating profile:', err);
-            alert('Error updating profile.');
+            setSaveStatus('error');
         }
     };
 
@@ -59,8 +64,8 @@ const Profile = () => {
 
     return (
         <div className="flex-1 flex items-center justify-center p-8 font-serif">
-            <div className="max-w-4xl w-full bg-card shadow-2xl rounded-[3rem] border-[6px] border-line relative overflow-hidden flex flex-col md:flex-row min-h-[600px]">
-                {/* Buton Back general */}
+            <div className="max-w-4xl w-full bg-card shadow-2xl rounded-[3rem] border-[6px] border-line relative overflow-hidden flex flex-col md:flex-row min-h-150">
+                {/* Back: to the shop from the dashboard, to the dashboard from the other views */}
                 <button
                     onClick={() => (view === 'dashboard' ? navigate('/') : setView('dashboard'))}
                     className="absolute top-8 left-8 flex items-center gap-2 text-secondary hover:text-accent font-bold uppercase text-[10px] tracking-widest z-30 transition-all"
@@ -92,12 +97,22 @@ const Profile = () => {
                             <h3 className="text-2xl text-secondary italic mb-10 border-b border-line/40 pb-4 tracking-tight">
                                 Welcome to your Sanctuary
                             </h3>
+                            {saveStatus === 'saved' && (
+                                <p role="status" className="flex items-start gap-2 text-sm font-sans text-ink">
+                                    <CircleCheck size={18} aria-hidden="true" className="mt-0.5 shrink-0 text-accent" />
+                                    Your changes are saved.
+                                </p>
+                            )}
                             <div className="grid grid-cols-1 gap-4">
                                 <MenuButton
                                     icon={<Settings size={24} />}
                                     title="Account Settings"
                                     desc="Update your personal information, address and phone"
-                                    onClick={() => setView('settings')}
+                                    onClick={() => {
+                                        // A message from an earlier save should not stay on screen.
+                                        setSaveStatus('idle');
+                                        setView('settings');
+                                    }}
                                 />
                                 <MenuButton
                                     icon={<ShoppingBag size={24} />}
@@ -159,10 +174,21 @@ const Profile = () => {
                                 </div>
                                 <button
                                     type="submit"
-                                    className="mt-8 w-full bg-primary text-on-primary py-4 rounded-full font-bold uppercase tracking-widest hover:bg-primary-hover transition-all flex items-center justify-center gap-3 shadow-xl"
+                                    disabled={saveStatus === 'saving'}
+                                    className="mt-8 w-full bg-primary text-on-primary py-4 rounded-full font-bold uppercase tracking-widest hover:bg-primary-hover transition-all flex items-center justify-center gap-3 shadow-xl disabled:opacity-60"
                                 >
-                                    <Save size={18} /> Save Changes
+                                    <Save size={18} /> {saveStatus === 'saving' ? 'Saving…' : 'Save Changes'}
                                 </button>
+                                {saveStatus === 'error' && (
+                                    <p role="alert" className="flex items-start gap-2 text-sm font-sans text-ink">
+                                        <CircleAlert
+                                            size={18}
+                                            aria-hidden="true"
+                                            className="mt-0.5 shrink-0 text-accent"
+                                        />
+                                        We could not save your changes right now. Please try again later.
+                                    </p>
+                                )}
                             </form>
                         </div>
                     )}
