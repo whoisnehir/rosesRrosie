@@ -29,7 +29,7 @@ const Login = ({ setIsLoggedIn, setUserRole }) => {
                 <form onSubmit={handleLogin} className="space-y-6">
                     <input
                         type="email"
-                        placeholder="Email (use 'admin' for Admin Role)"
+                        placeholder="Email"
                         className="w-full bg-surface p-4 rounded-2xl outline-none border border-transparent focus:border-line transition-all"
                         onChange={(e) => setEmail(e.target.value)}
                         required
