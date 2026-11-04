@@ -2,6 +2,11 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LogIn } from 'lucide-react';
 
+const labelClass = 'mb-2 block text-xs font-bold uppercase tracking-widest text-secondary';
+// A thin border at all times; the field in use gets the accent border and a soft ring, visible in both themes.
+const inputClass =
+    'w-full bg-surface p-4 rounded-2xl text-ink placeholder:text-muted border border-line/60 outline-none transition-colors focus:border-accent focus:ring-2 focus:ring-accent/30';
+
 const Login = ({ setIsLoggedIn, setUserRole }) => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
@@ -13,11 +18,11 @@ const Login = ({ setIsLoggedIn, setUserRole }) => {
         if (email.toLowerCase().includes('admin')) {
             setIsLoggedIn(true);
             setUserRole('ADMIN');
-            navigate('/admin'); // Adminul merge la Dashboard
+            navigate('/admin'); // The admin goes to the dashboard
         } else {
             setIsLoggedIn(true);
             setUserRole('USER');
-            navigate('/profile'); // Userul merge la Profil
+            navigate('/profile'); // A customer goes to their profile
         }
     };
 
@@ -27,19 +32,32 @@ const Login = ({ setIsLoggedIn, setUserRole }) => {
                 <LogIn className="mx-auto text-accent mb-6" size={40} />
                 <h2 className="text-3xl text-center text-ink mb-8 font-medium italic">Welcome Back</h2>
                 <form onSubmit={handleLogin} className="space-y-6">
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        className="w-full bg-surface p-4 rounded-2xl outline-none border border-transparent focus:border-line transition-all"
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        className="w-full bg-surface p-4 rounded-2xl outline-none border border-transparent focus:border-line transition-all"
-                        required
-                    />
+                    <div>
+                        <label htmlFor="login-email" className={labelClass}>
+                            Email
+                        </label>
+                        <input
+                            id="login-email"
+                            type="email"
+                            autoComplete="email"
+                            placeholder="you@example.com"
+                            className={inputClass}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="login-password" className={labelClass}>
+                            Password
+                        </label>
+                        <input
+                            id="login-password"
+                            type="password"
+                            autoComplete="current-password"
+                            className={inputClass}
+                            required
+                        />
+                    </div>
                     <button
                         type="submit"
                         className="w-full bg-primary text-on-primary py-4 rounded-full font-bold uppercase tracking-widest shadow-lg hover:bg-primary-hover"
