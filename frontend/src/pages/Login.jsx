@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { LogIn } from 'lucide-react';
 
 const labelClass = 'mb-2 block text-xs font-bold uppercase tracking-widest text-secondary';
@@ -65,6 +65,12 @@ const Login = ({ setIsLoggedIn, setUserRole }) => {
                         Enter Sanctuary
                     </button>
                 </form>
+                <p className="mt-8 text-center text-sm font-sans text-secondary">
+                    New here?{' '}
+                    <Link to="/signup" className="text-accent underline hover:text-accent-hover">
+                        Create an account
+                    </Link>
+                </p>
             </div>
         </div>
     );
