@@ -86,6 +86,12 @@ const SignUp = () => {
                         </p>
                     )}
                 </form>
+                <p className="mt-8 text-sm font-sans text-secondary">
+                    Already have an account?{' '}
+                    <Link to="/login" className="text-accent underline hover:text-accent-hover">
+                        Sign in
+                    </Link>
+                </p>
                 <Link
                     to="/"
                     className="mt-8 inline-block text-[10px] uppercase text-secondary tracking-widest border-b border-secondary/30 hover:text-accent"
