@@ -1,4 +1,4 @@
-export const MESSAGE_MAX_LENGHT = 1000;
+export const MESSAGE_MAX_LENGTH = 1000;
 
 export function validateName(value) {
     const name = value.trim();
@@ -43,7 +43,7 @@ export function validateMessage(value) {
     if (message.lenght < 10) {
         return 'Your message needs at least 10 characters.';
     }
-    if (message.lenght > MESSAGE_MAX_LENGHT) {
+    if (message.lenght > MESSAGE_MAX_LENGTH) {
         return 'Your message needs to be shorter than ${MESSAGE_MAX_LENGHT}';
     }
     return '';
