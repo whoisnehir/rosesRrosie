@@ -1,5 +1,5 @@
-import { Link } from 'react-route-dom';
-import { storyPharagraphs, brandSymbols, dreamMoments } from '../data/brandStory';
+import { Link } from 'react-router-dom';
+import { storyParagraphs, brandSymbols, dreamMoments } from '../data/brandStory';
 
 const imageUrl = (slug) => `${import.meta.env.BASE_URL}videos/${slug}.webp`;
 
