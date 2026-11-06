@@ -9,7 +9,7 @@ const footerColumns = [
     { title: 'Help', links: infoLinks },
 ];
 
-const Footer = () => (
+const Footer = ({ onOpenCookieSettings }) => (
     <footer className="border-t border-line/40 bg-card/50 text-ink">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12 grid grid-cols-2 gap-10 md:grid-cols-[2fr_1fr_1fr]">
             <div className="col-span-2 md:col-span-1">
@@ -51,10 +51,13 @@ const Footer = () => (
             ))}
         </div>
 
-        <div className="border-t border-line/30">
-            <p className="max-w-7xl mx-auto px-6 lg:px-8 py-5 text-xs text-muted text-center md:text-left">
-                © {new Date().getFullYear()} rosesRrosie · Demo project. No real products are sold.
-            </p>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-5 flex flex-col items-center gap-2 text-xs text-muted md:flex-row md:justify-between">
+            <p>© {new Date().getFullYear()} rosesRrosie · Demo project. No real products are sold.</p>
+            {onOpenCookieSettings && (
+                <button type="button" onClick={onOpenCookieSettings} className="underline hover:text-accent">
+                    Cookie settings
+                </button>
+            )}
         </div>
     </footer>
 );
