@@ -10,26 +10,28 @@ const CollectionPage = () => {
     const { slug } = useParams();
     const collection = collections.find((item) => item.slug === slug);
     const [products, setProducts] = useState([]);
-    // 'loading' while waiting for the service, then 'ready' or 'error'.
-    const [status, setStatus] = useState('loading');
+    // The collection the current answer belongs to, and whether loading it failed.
+    const [loadedSlug, setLoadedSlug] = useState(null);
+    const [hasError, setHasError] = useState(false);
 
     useEffect(() => {
         // Stops a late answer from updating the page after the visitor has moved to another collection.
         let isCurrent = true;
-        setStatus('loading');
 
         productService
             .getByCollection(slug)
             .then((data) => {
                 if (isCurrent) {
                     setProducts(data);
-                    setStatus('ready');
+                    setHasError(false);
+                    setLoadedSlug(slug);
                 }
             })
             .catch((error) => {
                 console.error('Could not load the products:', error);
                 if (isCurrent) {
-                    setStatus('error');
+                    setHasError(true);
+                    setLoadedSlug(slug);
                 }
             });
 
@@ -37,6 +39,9 @@ const CollectionPage = () => {
             isCurrent = false;
         };
     }, [slug]);
+
+    // Still loading while the answer on screen belongs to another collection (or to none yet).
+    const isLoading = loadedSlug !== slug;
 
     if (!collection) {
         return <NotFoundPage />;
@@ -52,23 +57,23 @@ const CollectionPage = () => {
             />
 
             <section aria-label="Products" className="w-full max-w-7xl mx-auto px-6 lg:px-8 py-12">
-                {status === 'loading' && (
+                {isLoading && (
                     <p role="status" className="text-center text-secondary italic">
                         Loading products...
                     </p>
                 )}
 
-                {status === 'error' && (
+                {!isLoading && hasError && (
                     <p role="alert" className="text-center text-secondary italic">
                         We could not load the products. Please try again later.
                     </p>
                 )}
 
-                {status === 'ready' && products.length === 0 && (
+                {!isLoading && !hasError && products.length === 0 && (
                     <p className="text-center text-secondary italic">This collection has no products yet.</p>
                 )}
 
-                {status === 'ready' && products.length > 0 && (
+                {!isLoading && !hasError && products.length > 0 && (
                     <>
                         <p className="text-center text-sm text-secondary italic">
                             {products.length} {products.length === 1 ? 'product' : 'products'}
