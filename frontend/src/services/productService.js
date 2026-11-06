@@ -9,4 +9,6 @@ export const productService = {
     // The id from the URL is text ("1"), the id in the data is a number (1).
     getById: async (id) => products.find((product) => product.id === Number(id)) ?? null,
     search: async (query) => searchProducts(products, query),
+    // The products of one collection, e.g. getByCollection('iced-flowers').
+    getByCollection: async (slug) => products.filter((product) => product.collection === slug),
 };
