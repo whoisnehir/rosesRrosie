@@ -1,11 +1,11 @@
-import { CATEGORY_OPTIONS, SKIN_TYPE_OPTIONS, SORT_OPTIONS } from '../utils/filterProducts';
+import { SORT_OPTIONS } from '../utils/filterProducts';
 
 const labelClass = 'flex flex-col gap-1 text-[10px] font-bold uppercase tracking-widest text-secondary';
 const selectClass = 'bg-card border border-line rounded-full px-4 py-2 text-sm text-ink normal-case tracking-normal';
 
-// The Shop filters: three drop-down lists and "Clear filters". It only shows the current values and reports
-// changes; the page decides what they do.
-const ProductFilters = ({ category, skinType, sort, onChange, onClear }) => (
+// The Shop filters: drop-down lists and "Clear filters". It only shows the options and the current values and
+// reports changes; the page decides which options exist and what the changes do.
+const ProductFilters = ({ categoryOptions, skinTypeOptions, category, skinType, sort, onChange, onClear }) => (
     <div className="mt-8 grid grid-cols-2 gap-3 md:flex md:items-end md:justify-center">
         <label className={labelClass}>
             Category
@@ -15,7 +15,7 @@ const ProductFilters = ({ category, skinType, sort, onChange, onClear }) => (
                 className={selectClass}
             >
                 <option value="">All</option>
-                {CATEGORY_OPTIONS.map(({ value, label }) => (
+                {categoryOptions.map(({ value, label }) => (
                     <option key={value} value={value}>
                         {label}
                     </option>
@@ -27,7 +27,7 @@ const ProductFilters = ({ category, skinType, sort, onChange, onClear }) => (
             Skin type
             <select value={skinType} onChange={(event) => onChange('skin', event.target.value)} className={selectClass}>
                 <option value="">All</option>
-                {SKIN_TYPE_OPTIONS.map(({ value, label }) => (
+                {skinTypeOptions.map(({ value, label }) => (
                     <option key={value} value={value}>
                         {label}
                     </option>

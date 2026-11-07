@@ -3,7 +3,7 @@ import ProductGrid from '../components/ProductGrid';
 import { productService } from '../services/productService';
 import { useSearchParams } from 'react-router-dom';
 import ProductFilters from '../components/ProductFilters';
-import { filterAndSortProducts } from '../utils/filterProducts';
+import { filterAndSortProducts, getCategoryOptions, getSkinTypeOptions } from '../utils/filterProducts';
 
 const ShopPage = () => {
     const [products, setProducts] = useState([]);
@@ -75,6 +75,8 @@ const ShopPage = () => {
             {status === 'ready' && products.length > 0 && (
                 <>
                     <ProductFilters
+                        categoryOptions={getCategoryOptions(products)}
+                        skinTypeOptions={getSkinTypeOptions(products)}
                         category={category}
                         skinType={skinType}
                         sort={sort}

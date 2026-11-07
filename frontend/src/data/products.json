@@ -1,6 +1,7 @@
 [
     {
         "id": 1,
+        "isFeatured": true,
         "name": "Petal Velvet Lipstick",
         "collection": "the-bloom-collection",
         "brand": "rosesRrosie",
@@ -163,6 +164,7 @@
     },
     {
         "id": 6,
+        "isFeatured": true,
         "name": "Ice Bloom Highlighter",
         "collection": "iced-flowers",
         "brand": "rosesRrosie",
@@ -253,6 +255,7 @@
     },
     {
         "id": 9,
+        "isFeatured": true,
         "name": "Enchanted Berry Lip Stain",
         "collection": "magical-blossom",
         "brand": "rosesRrosie",

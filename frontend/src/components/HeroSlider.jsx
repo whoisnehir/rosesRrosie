@@ -5,10 +5,13 @@ import { useMediaQuery } from '../hooks/useMediaQuery';
 
 // How long the last frame of a video stays on screen before the next slide.
 const HOLD_AFTER_VIDEO_MS = 1500;
+// How long a slide without a video stays on screen.
+const IMAGE_SLIDE_MS = 6000;
 
-// The Home page opening: one slide per collection, each with its video, name, tagline and a link.
-// Each video plays once, then the next slide starts. Visitors can pause it, move with the arrows or dots,
-// and visitors who ask their system for less motion see still images instead of videos.
+// The Home page opening: one slide per collection, each with its video (or image), name, tagline and a link.
+// A video plays once, then the next slide starts; a slide without a video stays for IMAGE_SLIDE_MS.
+// Visitors can pause it and move with the arrows or dots; with a single slide there is nothing to move, so the
+// controls are hidden. Visitors who ask their system for less motion see still images and no automatic change.
 const HeroSlider = ({ slides }) => {
     const [index, setIndex] = useState(0);
     const [isPaused, setIsPaused] = useState(false);
@@ -39,6 +42,19 @@ const HeroSlider = ({ slides }) => {
         return () => clearTimeout(timeoutRef.current);
     }, [index]);
 
+    const showVideos = !prefersReducedMotion;
+    const hasManySlides = slides.length > 1;
+    const currentHasVideo = showVideos && Boolean(slides[index]?.video);
+
+    // A slide without a video moves on by itself after a while, unless the slideshow is paused.
+    useEffect(() => {
+        if (!showVideos || !hasManySlides || currentHasVideo || isPaused) {
+            return;
+        }
+        const timer = setTimeout(() => setIndex((current) => (current + 1) % slides.length), IMAGE_SLIDE_MS);
+        return () => clearTimeout(timer);
+    }, [index, showVideos, hasManySlides, currentHasVideo, isPaused, slides.length]);
+
     function handleEnded() {
         if (!isPausedRef.current) {
             timeoutRef.current = setTimeout(() => goTo(index + 1), HOLD_AFTER_VIDEO_MS);
@@ -63,8 +79,7 @@ const HeroSlider = ({ slides }) => {
         }
     }
 
-    const showVideos = !prefersReducedMotion;
-    const assetUrl = (slug, extension) => `${import.meta.env.BASE_URL}videos/${slug}.${extension}`;
+    const assetUrl = (path) => `${import.meta.env.BASE_URL}${path}`;
 
     return (
         <section
@@ -72,7 +87,7 @@ const HeroSlider = ({ slides }) => {
             aria-label="Collections"
             className="relative h-[70vh] min-h-105 max-h-190 overflow-hidden bg-surface"
         >
-            {slides.map(({ name, slug, tagline }, position) => {
+            {slides.map(({ name, slug, tagline, image, video }, position) => {
                 const isActive = position === index;
                 return (
                     <div
@@ -84,13 +99,13 @@ const HeroSlider = ({ slides }) => {
                         inert={!isActive}
                         className={`absolute inset-0 transition-opacity duration-700 ${isActive ? 'opacity-100' : 'opacity-0'}`}
                     >
-                        {showVideos ? (
+                        {showVideos && video ? (
                             <video
                                 ref={(element) => {
                                     videoRefs.current[position] = element;
                                 }}
-                                src={assetUrl(slug, 'mp4')}
-                                poster={assetUrl(slug, 'webp')}
+                                src={assetUrl(video)}
+                                poster={assetUrl(image)}
                                 muted
                                 playsInline
                                 preload={isActive ? 'auto' : 'none'}
@@ -99,11 +114,7 @@ const HeroSlider = ({ slides }) => {
                                 className="absolute inset-0 h-full w-full object-cover"
                             />
                         ) : (
-                            <img
-                                src={assetUrl(slug, 'webp')}
-                                alt=""
-                                className="absolute inset-0 h-full w-full object-cover"
-                            />
+                            <img src={assetUrl(image)} alt="" className="absolute inset-0 h-full w-full object-cover" />
                         )}
 
                         {/* A dark shade on the left keeps the white text readable on any video. */}
@@ -123,47 +134,49 @@ const HeroSlider = ({ slides }) => {
                 );
             })}
 
-            <div className="absolute bottom-5 inset-x-0 flex items-center justify-center gap-4 text-white">
-                <button
-                    type="button"
-                    onClick={() => goTo(index - 1)}
-                    aria-label="Previous slide"
-                    className="p-2 rounded-full bg-black/30 hover:bg-black/50"
-                >
-                    <ChevronLeft size={20} />
-                </button>
-                <ul className="flex gap-2">
-                    {slides.map(({ name, slug }, position) => (
-                        <li key={slug}>
-                            <button
-                                type="button"
-                                onClick={() => goTo(position)}
-                                aria-label={`Show slide ${position + 1}: ${name}`}
-                                aria-current={position === index}
-                                className={`block h-1.5 rounded-full transition-all ${position === index ? 'w-8 bg-white' : 'w-4 bg-white/50 hover:bg-white/80'}`}
-                            />
-                        </li>
-                    ))}
-                </ul>
-                <button
-                    type="button"
-                    onClick={() => goTo(index + 1)}
-                    aria-label="Next slide"
-                    className="p-2 rounded-full bg-black/30 hover:bg-black/50"
-                >
-                    <ChevronRight size={20} />
-                </button>
-                {showVideos && (
+            {hasManySlides && (
+                <div className="absolute bottom-5 inset-x-0 flex items-center justify-center gap-4 text-white">
                     <button
                         type="button"
-                        onClick={togglePause}
-                        aria-label={isPaused ? 'Play the slideshow' : 'Pause the slideshow'}
+                        onClick={() => goTo(index - 1)}
+                        aria-label="Previous slide"
                         className="p-2 rounded-full bg-black/30 hover:bg-black/50"
                     >
-                        {isPaused ? <Play size={18} /> : <Pause size={18} />}
+                        <ChevronLeft size={20} />
                     </button>
-                )}
-            </div>
+                    <ul className="flex gap-2">
+                        {slides.map(({ name, slug }, position) => (
+                            <li key={slug}>
+                                <button
+                                    type="button"
+                                    onClick={() => goTo(position)}
+                                    aria-label={`Show slide ${position + 1}: ${name}`}
+                                    aria-current={position === index}
+                                    className={`block h-1.5 rounded-full transition-all ${position === index ? 'w-8 bg-white' : 'w-4 bg-white/50 hover:bg-white/80'}`}
+                                />
+                            </li>
+                        ))}
+                    </ul>
+                    <button
+                        type="button"
+                        onClick={() => goTo(index + 1)}
+                        aria-label="Next slide"
+                        className="p-2 rounded-full bg-black/30 hover:bg-black/50"
+                    >
+                        <ChevronRight size={20} />
+                    </button>
+                    {showVideos && (
+                        <button
+                            type="button"
+                            onClick={togglePause}
+                            aria-label={isPaused ? 'Play the slideshow' : 'Pause the slideshow'}
+                            className="p-2 rounded-full bg-black/30 hover:bg-black/50"
+                        >
+                            {isPaused ? <Play size={18} /> : <Pause size={18} />}
+                        </button>
+                    )}
+                </div>
+            )}
         </section>
     );
 };

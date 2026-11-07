@@ -1,12 +1,12 @@
-// A full-width band with a collection's poster, its name in the script font and its tagline.
+// A full-width band with a collection's image, its name in the script font and its tagline.
 // The Collections page shows one per collection (inside a link); a collection's own page shows it as its title.
-const CollectionBanner = ({ slug, name, tagline, headingLevel = 'h2', action }) => {
+const CollectionBanner = ({ image, name, tagline, headingLevel = 'h2', action }) => {
     const Heading = headingLevel;
 
     return (
         <div className="relative h-[45vh] min-h-75 max-h-130 overflow-hidden">
             <img
-                src={`${import.meta.env.BASE_URL}videos/${slug}.webp`}
+                src={`${import.meta.env.BASE_URL}${image}`}
                 alt=""
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 motion-safe:group-hover:scale-105"
             />

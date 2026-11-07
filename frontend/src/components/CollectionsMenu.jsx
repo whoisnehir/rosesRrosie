@@ -1,13 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ChevronDown } from 'lucide-react';
-import { collections } from '../data/collections';
+import { useCollections } from '../hooks/useCollections';
 
 const CollectionsMenu = () => {
     const [isOpen, setIsOpen] = useState(false);
     const menuRef = useRef(null);
     const { pathname } = useLocation();
     const isActive = pathname.startsWith('/collections');
+    const { collections } = useCollections();
 
     // While the list is open, close it on a click outside it or on the Escape key.
     useEffect(() => {

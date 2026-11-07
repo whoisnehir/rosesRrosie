@@ -1,5 +1,4 @@
-// The texts of the About page: the dream rosesRrosie began with, what each part of the design means,
-// and the moment of the dream each collection stands for.
+// The texts of the About page: the dream rosesRrosie began with and what each part of the design means.
 export const storyParagraphs = [
     'rosesRrosie was born in the soft hour between sleeping and waking, when the world is still pastel.',
     'In that dream there was a garden without a gate. Roses grew beside wild poppies and forgotten herbs. No one had told them where to stand, and yet everything was exactly where it belonged. Under the trees stood a small table with an old mirror, a silk ribbon, a handwritten letter and a pressed petal. Nothing was new, and nothing was there by chance.',
@@ -27,23 +26,5 @@ export const brandSymbols = [
     {
         title: 'The R in our name',
         text: 'Roses are red, the old rhyme says. We say roses are Rosie, and Rosie is you.',
-    },
-];
-
-export const dreamMoments = [
-    {
-        collection: 'The Bloom Collection',
-        moment: 'The first light',
-        text: 'The moment the dream begins, when every petal is still opening.',
-    },
-    {
-        collection: 'Iced Flowers',
-        moment: 'The stillness',
-        text: 'A frozen morning, when beauty holds its breath and waits.',
-    },
-    {
-        collection: 'Magical Blossom',
-        moment: 'The night',
-        text: 'When the garden keeps its secrets and the stars come down to the roses.',
     },
 ];

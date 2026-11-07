@@ -1,22 +1,14 @@
-import { collections } from '../data/collections';
-
-// How each skin type from the data is shown to visitors.
-const SKIN_TYPE_LABELS = {
-    dry: 'Dry',
-    oily: 'Oily',
-    combination: 'Combination',
-};
+import { capitalize } from '../utils/capitalize';
 
 // The product facts as a semantic table: one row per fact, the fact's name in a row header.
 const ProductDetailsTable = ({ product }) => {
-    const { brand, collection, category, skinTypes, shades, ingredients } = product;
-    const collectionName = collections.find(({ slug }) => slug === collection)?.name;
+    const { brand, collectionName, category, skinTypes, shades, ingredients } = product;
 
     const rows = [
         { label: 'Brand', value: brand },
         { label: 'Collection', value: collectionName },
         { label: 'Category', value: category },
-        { label: 'Suitable for', value: skinTypes.map((type) => SKIN_TYPE_LABELS[type]).join(', ') },
+        { label: 'Suitable for', value: skinTypes.map(capitalize).join(', ') },
         { label: 'Shades', value: shades.map(({ name }) => name).join(', ') },
         { label: 'Ingredients', value: ingredients },
     ];

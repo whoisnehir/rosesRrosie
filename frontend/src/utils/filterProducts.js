@@ -1,16 +1,19 @@
-// The choices offered by the Shop filters. "value" is what goes into the URL, "label" is what visitors see.
-export const CATEGORY_OPTIONS = [
-    { value: 'lips', label: 'Lips' },
-    { value: 'eyes', label: 'Eyes' },
-    { value: 'face', label: 'Face' },
-    { value: 'cheeks', label: 'Cheeks' },
-];
+import { capitalize } from './capitalize';
 
-export const SKIN_TYPE_OPTIONS = [
-    { value: 'dry', label: 'Dry' },
-    { value: 'oily', label: 'Oily' },
-    { value: 'combination', label: 'Combination' },
-];
+// The choices offered by the filters. "value" is what goes into the URL, "label" is what visitors see.
+// The categories and skin types are read from the products themselves, so a new category appears on its own.
+
+// Each value once (a Set keeps no duplicates), in lower case, in the order it first appears in the products.
+function toOptions(values) {
+    const unique = [...new Set(values.map((value) => value.toLowerCase()))];
+    return unique.map((value) => ({ value, label: capitalize(value) }));
+}
+
+// e.g. [{ value: 'lips', label: 'Lips' }, { value: 'cheeks', label: 'Cheeks' }, ...]
+export const getCategoryOptions = (products) => toOptions(products.map(({ category }) => category));
+
+// flatMap: every product has a list of skin types, and all the lists become one list.
+export const getSkinTypeOptions = (products) => toOptions(products.flatMap(({ skinTypes }) => skinTypes));
 
 export const SORT_OPTIONS = [
     { value: '', label: 'Featured' },
@@ -32,7 +35,7 @@ export function filterAndSortProducts(products, { category, skinType, sort }) {
     const filtered = products.filter(
         (product) =>
             (!category || product.category.toLowerCase() === category) &&
-            (!skinType || product.skinTypes.includes(skinType)),
+            (!skinType || product.skinTypes.some((type) => type.toLowerCase() === skinType)),
     );
 
     const compare = COMPARE[sort];
