@@ -1,12 +1,10 @@
 import { Link } from 'react-router-dom';
-import { collections } from '../data/collections';
 import { formatPrice } from '../utils/formatPrice';
 
 // One product in a grid: image, collection, name, price and shade dots. The whole card opens the product page.
 const ProductCard = ({ product }) => {
-    const { id, name, collection, price, shades, images } = product;
+    const { id, name, collectionName, price, shades, images } = product;
     const image = images[0];
-    const collectionName = collections.find(({ slug }) => slug === collection)?.name;
 
     return (
         <Link to={`/product/${id}`} className="group block">

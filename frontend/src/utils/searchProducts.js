@@ -1,5 +1,3 @@
-import { collections } from '../data/collections';
-
 // Lowercase and without diacritics, so "Blush", "blush" and "blúsh" are the same word.
 function normalize(text) {
     return text
@@ -11,9 +9,10 @@ function normalize(text) {
 // Everything a visitor might type to find a product, in one normalized text.
 // The brand is left out: "rosesRrosie" contains "rose", so every product would match a search for "rose".
 function searchableText(product) {
-    const collectionName = collections.find(({ slug }) => slug === product.collection)?.name ?? '';
     const shadeNames = product.shades.map(({ name }) => name);
-    return normalize([product.name, product.category, collectionName, product.description, ...shadeNames].join(' '));
+    return normalize(
+        [product.name, product.category, product.collectionName, product.description, ...shadeNames].join(' '),
+    );
 }
 
 // A word matches a product if it appears anywhere in its text, or if it is exactly the brand name.

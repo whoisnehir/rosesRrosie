@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ProductGallery from '../components/ProductGallery';
 import NotFoundPage from './NotFoundPage';
-import { collections } from '../data/collections';
 import { productService } from '../services/productService';
 import { formatPrice } from '../utils/formatPrice';
 import ProductDetailsTable from '../components/ProductDetailsTable';
@@ -59,8 +58,7 @@ const ProductPage = () => {
         return <NotFoundPage />;
     }
 
-    const { name, collection, price, description, shades, images } = product;
-    const collectionName = collections.find(({ slug }) => slug === collection)?.name;
+    const { name, collectionName, price, description, shades, images } = product;
 
     return (
         <article className="w-full max-w-7xl mx-auto px-6 lg:px-8 py-12">

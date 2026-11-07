@@ -2,15 +2,13 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import HeroSlider from '../components/HeroSlider';
 import ProductGrid from '../components/ProductGrid';
-import { collections } from '../data/collections';
 import { productService } from '../services/productService';
-import { CATEGORY_OPTIONS } from '../utils/filterProducts';
-
-// The products shown under "Featured products": one from each collection.
-const FEATURED_PRODUCT_IDS = [1, 6, 9];
+import { useCollections } from '../hooks/useCollections';
+import { getCategoryOptions } from '../utils/filterProducts';
 
 const HomePage = () => {
     const [products, setProducts] = useState([]);
+    const { collections } = useCollections();
 
     useEffect(() => {
         let isCurrent = true;
@@ -27,28 +25,32 @@ const HomePage = () => {
         };
     }, []);
 
-    const featuredProducts = products.filter(({ id }) => FEATURED_PRODUCT_IDS.includes(id));
+    // The products marked with "isFeatured": true in the data.
+    const featuredProducts = products.filter(({ isFeatured }) => isFeatured);
+    const categoryOptions = getCategoryOptions(products);
 
     return (
         <>
             <h1 className="sr-only">rosesRrosie makeup collections</h1>
-            <HeroSlider slides={collections} />
+            {collections.length > 0 && <HeroSlider slides={collections} />}
 
             <div className="w-full max-w-7xl mx-auto px-6 lg:px-8 py-16">
-                <nav aria-label="Shop by category">
-                    <ul className="flex flex-wrap justify-center gap-3">
-                        {CATEGORY_OPTIONS.map(({ value, label }) => (
-                            <li key={value}>
-                                <Link
-                                    to={`/shop?category=${value}`}
-                                    className="block px-6 py-2 rounded-full border border-line text-xs font-bold uppercase tracking-widest text-ink hover:text-accent"
-                                >
-                                    Shop {label}
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
-                </nav>
+                {categoryOptions.length > 0 && (
+                    <nav aria-label="Shop by category">
+                        <ul className="flex flex-wrap justify-center gap-3">
+                            {categoryOptions.map(({ value, label }) => (
+                                <li key={value}>
+                                    <Link
+                                        to={`/shop?category=${value}`}
+                                        className="block px-6 py-2 rounded-full border border-line text-xs font-bold uppercase tracking-widest text-ink hover:text-accent"
+                                    >
+                                        Shop {label}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </nav>
+                )}
 
                 {featuredProducts.length > 0 && (
                     <section className="mt-20">
@@ -57,29 +59,30 @@ const HomePage = () => {
                     </section>
                 )}
 
-                <section className="mt-20">
-                    <h2 className="text-3xl text-ink font-light text-center">Our collections</h2>
-                    <ul className="mt-10 grid gap-8 md:grid-cols-3">
-                        {collections.map(({ name, slug }) => (
-                            <li key={slug}>
-                                <Link to={`/collections/${slug}`} className="group block text-center">
-                                    {/* The poster of the collection's video (its last frame) stands for the collection. */}
-                                    <img
-                                        src={`${import.meta.env.BASE_URL}videos/${slug}.webp`}
-                                        alt=""
-                                        width="1920"
-                                        height="1080"
-                                        loading="lazy"
-                                        className="w-full h-auto rounded-2xl transition-opacity group-hover:opacity-90"
-                                    />
-                                    <span className="mt-4 block text-xl text-ink transition-colors group-hover:text-accent">
-                                        {name}
-                                    </span>
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
-                </section>
+                {collections.length > 0 && (
+                    <section className="mt-20">
+                        <h2 className="text-3xl text-ink font-light text-center">Our collections</h2>
+                        <ul className="mt-10 grid gap-8 md:grid-cols-3">
+                            {collections.map(({ name, slug, image }) => (
+                                <li key={slug}>
+                                    <Link to={`/collections/${slug}`} className="group block text-center">
+                                        <img
+                                            src={`${import.meta.env.BASE_URL}${image}`}
+                                            alt=""
+                                            width="1920"
+                                            height="1080"
+                                            loading="lazy"
+                                            className="w-full h-auto rounded-2xl transition-opacity group-hover:opacity-90"
+                                        />
+                                        <span className="mt-4 block text-xl text-ink transition-colors group-hover:text-accent">
+                                            {name}
+                                        </span>
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </section>
+                )}
             </div>
         </>
     );

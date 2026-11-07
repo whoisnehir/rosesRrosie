@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { ChevronDown } from 'lucide-react';
-import { collections } from '../data/collections';
+import { useCollections } from '../hooks/useCollections';
 import ThemeToggle from './ThemeToggle';
 
 const linkClass = 'py-3 text-sm font-bold uppercase tracking-widest hover:text-accent aria-[current=page]:text-accent';
@@ -13,6 +13,7 @@ const MobileMenu = ({ id, menuLinks, iconLinks, onNavigate }) => {
     const isInCollections = pathname.startsWith('/collections');
     // The Collections list starts open when the visitor is already on a collection page.
     const [isCollectionsOpen, setIsCollectionsOpen] = useState(isInCollections);
+    const { collections } = useCollections();
 
     return (
         <div id={id} className="md:hidden flex-1 overflow-y-auto border-t border-line/40 px-6 pb-8">

@@ -48,7 +48,9 @@ export const helpGroups = [
             {
                 question: 'What collections do you have?',
                 answer: [
-                    'Three: The Bloom Collection, Iced Flowers and Magical Blossom. Each one has its own video on the Home page.',
+                    'The ',
+                    { to: '/collections', label: 'Collections' },
+                    ' page shows all of them. Each collection has its own page with its products.',
                 ],
             },
         ],

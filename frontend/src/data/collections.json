@@ -1,0 +1,23 @@
+[
+    {
+        "slug": "the-bloom-collection",
+        "name": "The Bloom Collection",
+        "tagline": "Every shade begins with a bloom.",
+        "image": "videos/the-bloom-collection.webp",
+        "video": "videos/the-bloom-collection.mp4"
+    },
+    {
+        "slug": "iced-flowers",
+        "name": "Iced Flowers",
+        "tagline": "Frost-kissed petals, cool luminous glow.",
+        "image": "videos/iced-flowers.webp",
+        "video": "videos/iced-flowers.mp4"
+    },
+    {
+        "slug": "magical-blossom",
+        "name": "Magical Blossom",
+        "tagline": "A little magic in every petal.",
+        "image": "videos/magical-blossom.webp",
+        "video": "videos/magical-blossom.mp4"
+    }
+]

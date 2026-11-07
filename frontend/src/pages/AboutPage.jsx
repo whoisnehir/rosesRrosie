@@ -1,7 +1,5 @@
 import { Link } from 'react-router-dom';
-import { storyParagraphs, brandSymbols, dreamMoments } from '../data/brandStory';
-
-const imageUrl = (slug) => `${import.meta.env.BASE_URL}videos/${slug}.webp`;
+import { storyParagraphs, brandSymbols } from '../data/brandStory';
 
 const AboutPage = () => (
     <>
@@ -10,7 +8,7 @@ const AboutPage = () => (
 
             <section aria-labelledby="our-story" className="mt-10 grid gap-10 md:grid-cols-2 md:items-center">
                 <img
-                    src={imageUrl('the-bloom-collection')}
+                    src={`${import.meta.env.BASE_URL}videos/the-bloom-collection.webp`}
                     alt="Rose-pink makeup among roses and petals"
                     width="1920"
                     height="1080"
@@ -38,33 +36,6 @@ const AboutPage = () => (
                         </div>
                     ))}
                 </dl>
-            </section>
-
-            <section aria-labelledby="moments" className="mt-24 grid gap-10 md:grid-cols-2 md:items-center">
-                <div className="md:order-2">
-                    <img
-                        src={imageUrl('magical-blossom')}
-                        alt="Berry-toned makeup among dark roses at night"
-                        width="1920"
-                        height="1080"
-                        className="w-full h-auto rounded-4xl"
-                    />
-                </div>
-                <div>
-                    <h2 id="moments" className="text-3xl text-ink">
-                        Three moments of one dream
-                    </h2>
-                    <dl className="mt-6 space-y-6 font-sans text-base leading-relaxed text-text">
-                        {dreamMoments.map(({ collection, moment, text }) => (
-                            <div key={collection}>
-                                <dt className="text-xs font-bold uppercase tracking-widest text-secondary">
-                                    {collection} · {moment}
-                                </dt>
-                                <dd className="mt-1">{text}</dd>
-                            </div>
-                        ))}
-                    </dl>
-                </div>
             </section>
         </div>
 
