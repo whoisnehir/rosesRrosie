@@ -20,4 +20,7 @@ export const productService = {
     search: async (query) => searchProducts(catalog, query),
     // The products of one collection, found by the slug in its URL.
     getByCollection: async (slug) => catalog.filter((product) => product.collection === slug),
+    // The products marked with "isNew": true or "isBestSeller": true in the data.
+    getNew: async () => catalog.filter((product) => product.isNew),
+    getBestSellers: async () => catalog.filter((product) => product.isBestSeller),
 };
