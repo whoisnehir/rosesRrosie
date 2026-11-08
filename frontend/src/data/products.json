@@ -2,6 +2,7 @@
     {
         "id": 1,
         "isFeatured": true,
+        "isBestSeller": true,
         "name": "Petal Velvet Lipstick",
         "collection": "the-bloom-collection",
         "brand": "rosesRrosie",
@@ -99,6 +100,7 @@
     },
     {
         "id": 4,
+        "isBestSeller": true,
         "name": "Dewy Rose Skin Tint",
         "collection": "the-bloom-collection",
         "brand": "rosesRrosie",
@@ -132,6 +134,8 @@
     },
     {
         "id": 5,
+        "isNew": true,
+        "isBestSeller": true,
         "name": "Frosted Petal Lip Gloss",
         "collection": "iced-flowers",
         "brand": "rosesRrosie",
@@ -164,6 +168,7 @@
     },
     {
         "id": 6,
+        "isNew": true,
         "isFeatured": true,
         "name": "Ice Bloom Highlighter",
         "collection": "iced-flowers",
@@ -194,6 +199,7 @@
     },
     {
         "id": 7,
+        "isNew": true,
         "name": "Snowdrop Shimmer Eyeshadow",
         "collection": "iced-flowers",
         "brand": "rosesRrosie",
@@ -255,6 +261,7 @@
     },
     {
         "id": 9,
+        "isBestSeller": true,
         "isFeatured": true,
         "name": "Enchanted Berry Lip Stain",
         "collection": "magical-blossom",
