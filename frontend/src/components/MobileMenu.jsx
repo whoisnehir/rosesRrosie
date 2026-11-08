@@ -3,9 +3,11 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { ChevronDown } from 'lucide-react';
 import { useCollections } from '../hooks/useCollections';
 import ThemeToggle from './ThemeToggle';
+import { infoLinks } from '../data/navigation';
 
 const linkClass = 'py-3 text-sm font-bold uppercase tracking-widest hover:text-accent aria-[current=page]:text-accent';
 const subLinkClass = 'block py-2 text-sm italic hover:text-accent aria-[current=page]:text-accent';
+const infoLinkClass = 'block py-2 text-sm text-secondary hover:text-accent aria-[current=page]:text-accent';
 
 // The full-height navigation shown under the header on narrow screens; onNavigate closes it after a link is chosen.
 const MobileMenu = ({ id, menuLinks, iconLinks, onNavigate }) => {
@@ -67,6 +69,15 @@ const MobileMenu = ({ id, menuLinks, iconLinks, onNavigate }) => {
                     <li key={to}>
                         <NavLink to={to} onClick={onNavigate} className={`flex items-center gap-3 ${linkClass}`}>
                             <Icon size={18} /> {label}
+                        </NavLink>
+                    </li>
+                ))}
+            </ul>
+            <ul aria-label="Information" className="mt-2 pt-4 border-t border-line/40">
+                {infoLinks.map(({ to, label }) => (
+                    <li key={to}>
+                        <NavLink to={to} onClick={onNavigate} className={infoLinkClass}>
+                            {label}
                         </NavLink>
                     </li>
                 ))}

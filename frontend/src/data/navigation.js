@@ -1,4 +1,4 @@
-// Main shop navigation, shared by the navbar, the mobile menu and the footer.
+// Information pages, linked from the footer and from the mobile menu.
 export const menuLinks = [
     { to: '/new', label: 'New' },
     { to: '/collections', label: 'Collections', hasDropdown: true },
