@@ -160,7 +160,7 @@ const Navbar = () => {
                     <NavLink
                         to="/cart"
                         onClick={closeMenu}
-                        aria-label="Cart"
+                        aria-label={cartLabel}
                         className="relative hover:text-accent aria-[current=page]:text-accent"
                     >
                         <ShoppingCart size={22} />
