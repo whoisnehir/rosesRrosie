@@ -5,6 +5,7 @@ import NotFoundPage from './NotFoundPage';
 import { productService } from '../services/productService';
 import { formatPrice } from '../utils/formatPrice';
 import ProductDetailsTable from '../components/ProductDetailsTable';
+import AddToCart from '../components/AddToCart';
 
 const ProductPage = () => {
     const { id } = useParams();
@@ -58,7 +59,7 @@ const ProductPage = () => {
         return <NotFoundPage />;
     }
 
-    const { name, collectionName, price, description, shades, images } = product;
+    const { name, collectionName, price, description, images } = product;
 
     return (
         <article className="w-full max-w-7xl mx-auto px-6 lg:px-8 py-12">
@@ -70,19 +71,8 @@ const ProductPage = () => {
                 <p className="mt-4 text-xl text-ink">{formatPrice(price)}</p>
                 <p className="mt-6 leading-relaxed">{description}</p>
 
-                <h2 className="mt-8 text-[10px] font-bold uppercase tracking-widest text-secondary">Shades</h2>
-                <ul className="mt-3 flex flex-wrap justify-center gap-x-5 gap-y-2">
-                    {shades.map(({ name: shadeName, hex }) => (
-                        <li key={shadeName} className="flex items-center gap-2 text-sm text-ink">
-                            <span
-                                aria-hidden="true"
-                                className="size-5 rounded-full border border-line"
-                                style={{ backgroundColor: hex }}
-                            />
-                            {shadeName}
-                        </li>
-                    ))}
-                </ul>
+                {/* key: a new product starts with its own first shade, quantity 1 and no message. */}
+                <AddToCart key={product.id} product={product} />
             </div>
             <div className="mt-12 mx-auto max-w-2xl">
                 <ProductDetailsTable product={product} />

@@ -7,6 +7,8 @@ import SearchBar from './SearchBar';
 import ThemeToggle from './ThemeToggle';
 import { useMediaQuery } from '../hooks/useMediaQuery';
 import { menuLinks } from '../data/navigation';
+import CartCount from './CartCount';
+import { useCart } from '../hooks/useCart';
 
 const iconLinks = [
     { to: '/warehouses', label: 'Warehouses', Icon: Warehouse },
@@ -24,6 +26,9 @@ const Navbar = () => {
     const isDesktop = useMediaQuery('(min-width: 768px)');
     // On phones the menu and the search fill the screen under the header; on desktop the menu does not exist.
     const isPhonePanelOpen = !isDesktop && (isMenuOpen || isSearchOpen);
+    const { count } = useCart();
+    // The cart's name for screen readers says how many pieces it holds, because the bubble is only seen.
+    const cartLabel = count === 0 ? 'Cart' : `Cart, ${count} ${count === 1 ? 'item' : 'items'}`;
 
     // While a panel is open, Escape closes it; while a phone panel is open, the page behind it cannot scroll.
     useEffect(() => {
@@ -118,11 +123,12 @@ const Navbar = () => {
                                 <NavLink
                                     key={to}
                                     to={to}
-                                    aria-label={label}
+                                    aria-label={to === '/cart' ? cartLabel : label}
                                     className="flex flex-col items-center hover:text-accent transition-all group aria-[current=page]:text-accent"
                                 >
-                                    <span className="group-hover:scale-110 transition-transform">
+                                    <span className="relative group-hover:scale-110 transition-transform">
                                         <Icon size={20} />
+                                        {to === '/cart' && <CartCount count={count} />}
                                     </span>
                                     <span className="hidden lg:block text-[8px] uppercase font-bold mt-1 tracking-tighter">
                                         {label}
@@ -149,6 +155,7 @@ const Navbar = () => {
                         className="hover:text-accent aria-[current=page]:text-accent"
                     >
                         <ShoppingCart size={22} />
+                        <CartCount count={count} />
                     </NavLink>
                 </div>
             </nav>
