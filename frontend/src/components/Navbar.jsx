@@ -152,7 +152,7 @@ const Navbar = () => {
                         to="/cart"
                         onClick={closeMenu}
                         aria-label="Cart"
-                        className="hover:text-accent aria-[current=page]:text-accent"
+                        className="relative hover:text-accent aria-[current=page]:text-accent"
                     >
                         <ShoppingCart size={22} />
                         <CartCount count={count} />
