@@ -2,10 +2,11 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../hooks/useCart';
 import QuantityStepper from './QuantityStepper';
+import WishlistButton from './WishlistButton';
 
 // The shade and quantity choice and the "Add to cart" button of a product page. The first shade starts selected.
 const AddToCart = ({ product }) => {
-    const { id, shades } = product;
+    const { id, name, shades } = product;
     const [shade, setShade] = useState(shades[0]?.name ?? '');
     const [quantity, setQuantity] = useState(1);
     // What was last added, so the message says what went into the cart; null before the first click.
@@ -58,6 +59,7 @@ const AddToCart = ({ product }) => {
                 >
                     Add to cart
                 </button>
+                <WishlistButton productId={id} productName={name} variant="page" />
             </div>
 
             {/* Always on the page, so screen readers announce the text when it appears. */}

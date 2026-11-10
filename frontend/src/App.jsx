@@ -49,7 +49,7 @@ function App() {
                     <Route path="/warehouses" element={<WarehousePage />} />
                     <Route path="/cart" element={<CartPage />} />
                     <Route path="/profile" element={isCustomer ? <Profile /> : <Navigate to="/login" />} />
-                    <Route path="/wishlist" element={isCustomer ? <WishlistPage /> : <Navigate to="/login" />} />
+                    <Route path="/wishlist" element={<WishlistPage />} />
 
                     <Route path="*" element={<NotFoundPage />} />
                 </Route>
