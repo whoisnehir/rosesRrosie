@@ -1,29 +1,24 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { LogIn } from 'lucide-react';
+import { useAuth } from '../hooks/useAuth';
 
 const labelClass = 'mb-2 block text-xs font-bold uppercase tracking-widest text-secondary';
 // A thin border at all times; the field in use gets the accent border and a soft ring, visible in both themes.
 const inputClass =
     'w-full bg-surface p-4 rounded-2xl text-ink placeholder:text-muted border border-line/60 outline-none transition-colors focus:border-accent focus:ring-2 focus:ring-accent/30';
 
-const Login = ({ setIsLoggedIn, setUserRole }) => {
+const Login = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
+    const { signIn } = useAuth();
 
     const handleLogin = (e) => {
         e.preventDefault();
 
-        // TODO(v1.1): simulated login, to be replaced by JWT verification from the Spring Boot API
-        if (email.toLowerCase().includes('admin')) {
-            setIsLoggedIn(true);
-            setUserRole('ADMIN');
-            navigate('/admin'); // The admin goes to the dashboard
-        } else {
-            setIsLoggedIn(true);
-            setUserRole('USER');
-            navigate('/profile'); // A customer goes to their profile
-        }
+        const session = signIn(email);
+        // The admin goes to the dashboard, a customer to their profile.
+        navigate(session.role === 'ADMIN' ? '/admin' : '/profile');
     };
 
     return (

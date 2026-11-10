@@ -1,8 +1,17 @@
 import { useState } from 'react';
-import { Package, Warehouse, BarChart3, Plus, Trash2, Edit, Save } from 'lucide-react';
+import { Package, Warehouse, BarChart3, Plus, Trash2, Edit, Save, LogOut } from 'lucide-react';
+import { useAuth } from '../hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 const AdminDashboard = () => {
     const [activeTab, setActiveTab] = useState('products');
+    const navigate = useNavigate();
+    const { signOut } = useAuth();
+
+    function handleSignOut() {
+        signOut();
+        navigate('/');
+    }
 
     return (
         <div className="min-h-screen bg-surface flex font-serif">
@@ -29,6 +38,14 @@ const AdminDashboard = () => {
                         onClick={() => setActiveTab('stocks')}
                     />
                 </nav>
+                {/* mt-auto pushes the button to the bottom of the sidebar. */}
+                <button
+                    type="button"
+                    onClick={handleSignOut}
+                    className="mt-auto flex items-center gap-3 p-4 rounded-2xl font-bold text-xs uppercase tracking-widest hover:bg-on-primary/10"
+                >
+                    <LogOut size={20} aria-hidden="true" /> Sign out
+                </button>
             </div>
 
             {/* Content zone */}

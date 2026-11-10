@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 import RootLayout from './layouts/RootLayout';
@@ -21,10 +20,12 @@ import Profile from './pages/Profile';
 import WishlistPage from './pages/WishlistPage';
 import AdminDashboard from './pages/AdminDashboard';
 import NotFoundPage from './pages/NotFoundPage';
+import { useAuth } from './hooks/useAuth';
 
 function App() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [userRole, setUserRole] = useState('USER');
+    const { session } = useAuth();
+    const isCustomer = session?.role === 'USER';
+    const isAdmin = session?.role === 'ADMIN';
 
     return (
         <Router basename={import.meta.env.BASE_URL}>
@@ -43,27 +44,18 @@ function App() {
                     <Route path="/help" element={<HelpPage />} />
                     <Route path="/contact" element={<ContactPage />} />
 
-                    <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} setUserRole={setUserRole} />} />
+                    <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<SignUp />} />
                     <Route path="/warehouses" element={<WarehousePage />} />
                     <Route path="/cart" element={<CartPage />} />
-                    <Route
-                        path="/profile"
-                        element={isLoggedIn && userRole === 'USER' ? <Profile /> : <Navigate to="/login" />}
-                    />
-                    <Route
-                        path="/wishlist"
-                        element={isLoggedIn && userRole === 'USER' ? <WishlistPage /> : <Navigate to="/login" />}
-                    />
+                    <Route path="/profile" element={isCustomer ? <Profile /> : <Navigate to="/login" />} />
+                    <Route path="/wishlist" element={isCustomer ? <WishlistPage /> : <Navigate to="/login" />} />
 
                     <Route path="*" element={<NotFoundPage />} />
                 </Route>
 
                 {/* The admin panel has its own full-screen layout */}
-                <Route
-                    path="/admin"
-                    element={isLoggedIn && userRole === 'ADMIN' ? <AdminDashboard /> : <Navigate to="/" />}
-                />
+                <Route path="/admin" element={isAdmin ? <AdminDashboard /> : <Navigate to="/" />} />
             </Routes>
         </Router>
     );

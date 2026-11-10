@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { Heart, Menu, Search, ShoppingCart, User, Warehouse, X } from 'lucide-react';
+import { Heart, Menu, Search, ShoppingCart, User, Warehouse, X, UserCheck } from 'lucide-react';
 import CollectionsMenu from './CollectionsMenu';
 import MobileMenu from './MobileMenu';
 import SearchBar from './SearchBar';
@@ -9,6 +9,7 @@ import { useMediaQuery } from '../hooks/useMediaQuery';
 import { menuLinks } from '../data/navigation';
 import CartCount from './CartCount';
 import { useCart } from '../hooks/useCart';
+import { useAuth } from '../hooks/useAuth';
 
 const iconLinks = [
     { to: '/warehouses', label: 'Warehouses', Icon: Warehouse },
@@ -27,6 +28,14 @@ const Navbar = () => {
     // On phones the menu and the search fill the screen under the header; on desktop the menu does not exist.
     const isPhonePanelOpen = !isDesktop && (isMenuOpen || isSearchOpen);
     const { count } = useCart();
+    const { session } = useAuth();
+    // Signed in: the account icon leads to the profile (or the admin panel) and says so; otherwise to Sign in.
+    const account =
+        session === null
+            ? { to: '/login', label: 'Sign in', Icon: User }
+            : session.role === 'ADMIN'
+              ? { to: '/admin', label: 'Admin panel, signed in', Icon: UserCheck }
+              : { to: '/profile', label: 'Profile, signed in', Icon: UserCheck };
     // The cart's name for screen readers says how many pieces it holds, because the bubble is only seen.
     const cartLabel = count === 0 ? 'Cart' : `Cart, ${count} ${count === 1 ? 'item' : 'items'}`;
 
@@ -146,7 +155,7 @@ const Navbar = () => {
                         aria-label="Profile"
                         className="hover:text-accent aria-[current=page]:text-accent"
                     >
-                        <User size={22} />
+                        <account.Icon size={22} />
                     </NavLink>
                     <NavLink
                         to="/cart"

@@ -14,10 +14,18 @@ import {
     Fingerprint,
     CircleAlert,
     CircleCheck,
+    LogOut,
 } from 'lucide-react';
+import { useAuth } from '../hooks/useAuth';
 
 const Profile = () => {
     const navigate = useNavigate();
+    const { signOut } = useAuth();
+
+    function handleSignOut() {
+        signOut();
+        navigate('/');
+    }
 
     const [view, setView] = useState('dashboard'); // dashboard | settings | orders
     const [user, setUser] = useState(null);
@@ -87,6 +95,13 @@ const Profile = () => {
                         <Fingerprint size={14} className="text-accent" />
                         <span className="text-[10px] uppercase font-bold text-secondary">ID: {user?.id}</span>
                     </div>
+                    <button
+                        type="button"
+                        onClick={handleSignOut}
+                        className="mt-8 flex items-center gap-2 px-6 py-2 rounded-full border border-line text-xs font-bold uppercase tracking-widest text-ink hover:text-accent hover:border-accent"
+                    >
+                        <LogOut size={16} aria-hidden="true" /> Sign out
+                    </button>
                 </div>
 
                 {/* MAIN CONTENT Area */}
