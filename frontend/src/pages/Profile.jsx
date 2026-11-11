@@ -76,7 +76,7 @@ const Profile = () => {
                 {/* Back: to the shop from the dashboard, to the dashboard from the other views */}
                 <button
                     onClick={() => (view === 'dashboard' ? navigate('/') : setView('dashboard'))}
-                    className="absolute top-8 left-8 flex items-center gap-2 text-secondary hover:text-accent font-bold uppercase text-[10px] tracking-widest z-30 transition-all"
+                    className="absolute top-8 left-8 flex items-center gap-2 text-secondary hover:text-accent font-bold uppercase text-xs tracking-widest z-30 transition-all"
                 >
                     <ArrowLeft size={16} /> {view === 'dashboard' ? 'Back to Shop' : 'Back to Profile'}
                 </button>
@@ -93,7 +93,7 @@ const Profile = () => {
 
                     <div className="flex items-center gap-2 px-4 py-2 bg-card/50 rounded-full border border-line/20">
                         <Fingerprint size={14} className="text-accent" />
-                        <span className="text-[10px] uppercase font-bold text-secondary">ID: {user?.id}</span>
+                        <span className="text-xs uppercase font-bold text-secondary">ID: {user?.id}</span>
                     </div>
                     <button
                         type="button"
@@ -239,7 +239,7 @@ const MenuButton = ({ icon, title, desc, onClick }) => (
 
 const EditField = ({ label, icon, value, onChange, name }) => (
     <div className="space-y-1">
-        <label className="text-[9px] uppercase font-bold text-accent tracking-[0.2em] ml-2">{label}</label>
+        <label className="text-xs uppercase font-bold text-accent tracking-[0.2em] ml-2">{label}</label>
         <div className="flex items-center gap-3 px-4 py-3 bg-surface rounded-2xl border border-transparent focus-within:border-line focus-within:bg-card transition-all">
             <span className="text-accent">{React.cloneElement(icon, { size: 16 })}</span>
             <input

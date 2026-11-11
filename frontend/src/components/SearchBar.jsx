@@ -56,13 +56,11 @@ const SearchBar = ({ id, variant, onDone }) => {
                     }
                 >
                     <div className="flex items-center justify-between px-5 pb-2">
-                        <h2 className="text-[10px] font-bold uppercase tracking-widest text-secondary">
-                            Recent searches
-                        </h2>
+                        <h2 className="text-xs font-bold uppercase tracking-widest text-secondary">Recent searches</h2>
                         <button
                             type="button"
                             onClick={clearSearches}
-                            className="text-[10px] font-bold uppercase tracking-widest text-muted hover:text-accent"
+                            className="text-xs font-bold uppercase tracking-widest text-muted hover:text-accent"
                         >
                             Clear
                         </button>

@@ -1,8 +1,9 @@
 import { SORT_OPTIONS } from '../utils/filterProducts';
 
-const labelClass = 'flex flex-col gap-1 text-[10px] font-bold uppercase tracking-widest text-secondary';
-const selectClass = 'bg-card border border-line rounded-full px-4 py-2 text-sm text-ink normal-case tracking-normal';
-
+const labelClass = 'flex flex-col gap-1 text-xs font-bold uppercase tracking-widest text-secondary';
+// On phones the lists are 44px tall and use 16px text, so Safari on iPhone does not zoom in.
+const selectClass =
+    'min-h-11 md:min-h-0 bg-card border border-line rounded-full px-4 py-2 text-base md:text-sm text-ink normal-case tracking-normal';
 // The Shop filters: drop-down lists and "Clear filters". It only shows the options and the current values and
 // reports changes; the page decides which options exist and what the changes do.
 const ProductFilters = ({ categoryOptions, skinTypeOptions, category, skinType, sort, onChange, onClear }) => (
@@ -49,7 +50,7 @@ const ProductFilters = ({ categoryOptions, skinTypeOptions, category, skinType, 
         <button
             type="button"
             onClick={onClear}
-            className="self-end py-2 text-sm text-secondary underline hover:text-accent"
+            className="self-end min-h-11 md:min-h-0 py-2 text-sm text-secondary underline hover:text-accent"
         >
             Clear filters
         </button>

@@ -8,7 +8,7 @@ const CartCount = ({ count }) => {
     return (
         <span
             aria-hidden="true"
-            className="absolute -top-2 -right-2.5 min-w-4 h-4 px-1 rounded-full bg-accent text-on-accent text-[10px] leading-4 font-bold text-center"
+            className="absolute -top-2 -right-2.5 min-w-4.5 h-4.5 px-1 rounded-full bg-accent text-on-accent text-[11px] leading-4.5 font-bold text-center"
         >
             {count}
         </span>

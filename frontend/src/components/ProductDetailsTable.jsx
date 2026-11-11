@@ -17,7 +17,7 @@ const ProductDetailsTable = ({ product }) => {
         // On narrow screens only the table scrolls sideways, not the whole page.
         <div className="overflow-x-auto">
             <table className="w-full min-w-md text-left text-sm">
-                <caption className="mb-4 text-[10px] font-bold uppercase tracking-widest text-secondary">
+                <caption className="mb-4 text-xs font-bold uppercase tracking-widest text-secondary">
                     Product details
                 </caption>
                 <tbody>

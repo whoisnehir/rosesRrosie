@@ -94,7 +94,7 @@ const SignUp = () => {
                 </p>
                 <Link
                     to="/"
-                    className="mt-8 inline-block text-[10px] uppercase text-secondary tracking-widest border-b border-secondary/30 hover:text-accent"
+                    className="mt-8 inline-block text-xs uppercase text-secondary tracking-widest border-b border-secondary/30 hover:text-accent"
                 >
                     Back Home
                 </Link>

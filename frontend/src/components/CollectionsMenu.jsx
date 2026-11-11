@@ -72,7 +72,7 @@ const CollectionsMenu = () => {
                         <Link
                             to="/collections"
                             onClick={closeMenu}
-                            className="block px-6 py-2 text-[10px] font-bold uppercase tracking-widest text-secondary hover:text-accent transition-colors"
+                            className="block px-6 py-2 text-xs font-bold uppercase tracking-widest text-secondary hover:text-accent transition-colors"
                         >
                             View all collections
                         </Link>

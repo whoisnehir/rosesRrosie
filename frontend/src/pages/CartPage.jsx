@@ -101,13 +101,13 @@ const CartPage = () => {
                                             type="button"
                                             onClick={() => remove(productId, shade)}
                                             aria-label={`Remove ${product.name}, ${shade}`}
-                                            className="p-2 -m-2 text-secondary hover:text-accent"
+                                            className="inline-flex items-center justify-center size-11 -m-3 text-secondary hover:text-accent"
                                         >
                                             <X size={18} />
                                         </button>
                                     </div>
 
-                                    <div className="mt-4 flex items-center justify-between gap-4">
+                                    <div className="mt-4 flex flex-wrap items-center justify-between gap-2">
                                         <QuantityStepper
                                             quantity={quantity}
                                             onChange={(next) => setQuantity(productId, shade, next)}

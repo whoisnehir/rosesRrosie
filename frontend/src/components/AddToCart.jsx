@@ -22,15 +22,13 @@ const AddToCart = ({ product }) => {
     return (
         <form onSubmit={handleSubmit} className="mt-8">
             <fieldset>
-                <legend className="mx-auto text-[10px] font-bold uppercase tracking-widest text-secondary">
-                    Shade
-                </legend>
+                <legend className="mx-auto text-xs font-bold uppercase tracking-widest text-secondary">Shade</legend>
                 <div className="mt-3 flex flex-wrap justify-center gap-2">
                     {shades.map(({ name, hex }) => (
                         // The radio itself is hidden; the label around it is the pill the visitor sees and clicks.
                         <label
                             key={name}
-                            className="flex items-center gap-2 px-4 py-2 rounded-full border border-line text-sm text-ink cursor-pointer hover:border-accent has-checked:border-accent has-checked:ring-1 has-checked:ring-accent has-focus-visible:outline-2 has-focus-visible:outline-accent"
+                            className="flex items-center gap-2 min-h-11 px-4 py-2 rounded-full border border-line text-sm text-ink cursor-pointer hover:border-accent has-checked:border-accent has-checked:ring-1 has-checked:ring-accent has-focus-visible:outline-2 has-focus-visible:outline-accent"
                         >
                             <input
                                 type="radio"
