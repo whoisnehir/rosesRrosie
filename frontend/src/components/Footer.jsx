@@ -26,7 +26,7 @@ const Footer = ({ onOpenCookieSettings }) => (
                                 rel="noopener noreferrer"
                                 aria-label={`${name} (demo link)`}
                                 title={`${name} (demo link)`}
-                                className="block hover:text-accent transition-colors"
+                                className="inline-flex items-center justify-center size-6 hover:text-accent transition-colors"
                             >
                                 <Icon size={20} aria-hidden="true" />
                             </a>

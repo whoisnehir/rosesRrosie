@@ -140,11 +140,11 @@ const HeroSlider = ({ slides }) => {
                         type="button"
                         onClick={() => goTo(index - 1)}
                         aria-label="Previous slide"
-                        className="p-2 rounded-full bg-black/30 hover:bg-black/50"
+                        className="inline-flex items-center justify-center size-11 rounded-full bg-black/30 hover:bg-black/50"
                     >
                         <ChevronLeft size={20} />
                     </button>
-                    <ul className="flex gap-2">
+                    <ul className="flex">
                         {slides.map(({ name, slug }, position) => (
                             <li key={slug}>
                                 <button
@@ -152,8 +152,13 @@ const HeroSlider = ({ slides }) => {
                                     onClick={() => goTo(position)}
                                     aria-label={`Show slide ${position + 1}: ${name}`}
                                     aria-current={position === index}
-                                    className={`block h-1.5 rounded-full transition-all ${position === index ? 'w-8 bg-white' : 'w-4 bg-white/50 hover:bg-white/80'}`}
-                                />
+                                    className="group flex items-center justify-center min-w-8 h-11"
+                                >
+                                    {/* The line is what you see; the bigger button around it (32x44px) is what you tap. */}
+                                    <span
+                                        className={`block h-1.5 rounded-full transition-all ${position === index ? 'w-8 bg-white' : 'w-4 bg-white/50 group-hover:bg-white/80'}`}
+                                    />
+                                </button>
                             </li>
                         ))}
                     </ul>
@@ -161,7 +166,7 @@ const HeroSlider = ({ slides }) => {
                         type="button"
                         onClick={() => goTo(index + 1)}
                         aria-label="Next slide"
-                        className="p-2 rounded-full bg-black/30 hover:bg-black/50"
+                        className="inline-flex items-center justify-center size-11 rounded-full bg-black/30 hover:bg-black/50"
                     >
                         <ChevronRight size={20} />
                     </button>
@@ -170,7 +175,7 @@ const HeroSlider = ({ slides }) => {
                             type="button"
                             onClick={togglePause}
                             aria-label={isPaused ? 'Play the slideshow' : 'Pause the slideshow'}
-                            className="p-2 rounded-full bg-black/30 hover:bg-black/50"
+                            className="inline-flex items-center justify-center size-11 rounded-full bg-black/30 hover:bg-black/50"
                         >
                             {isPaused ? <Play size={18} /> : <Pause size={18} />}
                         </button>

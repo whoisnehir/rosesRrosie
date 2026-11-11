@@ -5,7 +5,7 @@ import { useWishlist } from '../hooks/useWishlist';
 // aria-pressed tells screen readers whether the button is on or off.
 // "card" sits in the corner of a product card's image; "page" stands next to Add to cart on the product page.
 const VARIANT_CLASSES = {
-    card: 'absolute top-3 right-3 p-2 bg-card/90 shadow-sm hover:scale-110',
+    card: 'absolute top-1 right-1 size-11 inline-flex items-center justify-center',
     page: 'p-4 border border-line hover:border-accent',
 };
 
@@ -21,7 +21,13 @@ const WishlistButton = ({ productId, productName, variant = 'card' }) => {
             aria-label={`Save ${productName} to your wishlist`}
             className={`rounded-full text-accent transition-transform ${VARIANT_CLASSES[variant]}`}
         >
-            <Heart size={18} aria-hidden="true" className={isSaved ? 'fill-accent' : ''} />
+            {variant === 'card' ? (
+                <span className="p-2 rounded-full bg-card/90 shadow-sm transition-transform hover:scale-110">
+                    <Heart size={18} aria-hidden="true" className={isSaved ? 'fill-accent' : ''} />
+                </span>
+            ) : (
+                <Heart size={18} aria-hidden="true" className={isSaved ? 'fill-accent' : ''} />
+            )}
         </button>
     );
 };

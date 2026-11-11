@@ -1,7 +1,8 @@
 import { Minus, Plus } from 'lucide-react';
 import { MAX_QUANTITY } from '../utils/cartItems';
 
-const stepButtonClass = 'p-2 hover:text-accent disabled:opacity-30 disabled:hover:text-current';
+const stepButtonClass =
+    'inline-flex items-center justify-center size-11 md:size-9 hover:text-accent disabled:opacity-30 disabled:hover:text-current';
 
 // The "− 1 +" control for a quantity between 1 and MAX_QUANTITY. It only shows the value and reports the new one;
 // the parent decides what to do with it. itemName goes into the button names, e.g. "One more Peony".

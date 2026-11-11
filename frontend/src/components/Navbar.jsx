@@ -81,16 +81,16 @@ const Navbar = () => {
         >
             <nav
                 aria-label="Main"
-                className="w-full max-w-7xl mx-auto px-6 lg:px-8 py-4 grid grid-cols-[1fr_auto_1fr] items-center gap-4 md:flex md:justify-between md:gap-6"
+                className="w-full max-w-7xl mx-auto px-6 lg:px-8 py-2.5 md:py-4 grid grid-cols-[1fr_auto_1fr] items-center gap-1 md:flex md:justify-between md:gap-4 lg:gap-6"
             >
-                <div className="flex md:hidden items-center gap-4">
+                <div className="flex md:hidden items-center -ml-2.5">
                     <button
                         type="button"
                         onClick={toggleMenu}
                         aria-expanded={isMenuOpen}
                         aria-controls="mobile-menu"
                         aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-                        className="hover:text-accent"
+                        className="inline-flex items-center justify-center size-11 hover:text-accent"
                     >
                         {isMenuOpen ? <X size={26} /> : <Menu size={26} />}
                     </button>
@@ -125,7 +125,7 @@ const Navbar = () => {
                             ))}
                         </ul>
 
-                        <div className="hidden md:flex items-center gap-4 lg:gap-6">
+                        <div className="hidden md:flex items-center gap-3 lg:gap-6">
                             <SearchToggle isOpen={false} onToggle={toggleSearch} controls="desktop-search" showLabel />
                             <ThemeToggle />
                             {iconLinks.map(({ to, label, Icon }) => (
@@ -133,13 +133,13 @@ const Navbar = () => {
                                     key={to}
                                     to={to}
                                     aria-label={to === '/cart' ? cartLabel : label}
-                                    className="flex flex-col items-center hover:text-accent transition-all group aria-[current=page]:text-accent"
+                                    className="flex flex-col items-center justify-center min-w-6 min-h-6 hover:text-accent transition-all group aria-[current=page]:text-accent"
                                 >
                                     <span className="relative group-hover:scale-110 transition-transform">
                                         <Icon size={20} />
                                         {to === '/cart' && <CartCount count={count} />}
                                     </span>
-                                    <span className="hidden lg:block text-[8px] uppercase font-bold mt-1 tracking-tighter">
+                                    <span className="hidden lg:block text-[11px] uppercase font-bold mt-1 tracking-tighter">
                                         {label}
                                     </span>
                                 </NavLink>
@@ -148,12 +148,12 @@ const Navbar = () => {
                     </>
                 )}
 
-                <div className="flex md:hidden items-center justify-end gap-4">
+                <div className="flex md:hidden items-center justify-end -mr-2.5">
                     <NavLink
                         to="/profile"
                         onClick={closeMenu}
                         aria-label="Profile"
-                        className="hover:text-accent aria-[current=page]:text-accent"
+                        className="inline-flex items-center justify-center size-11 hover:text-accent aria-[current=page]:text-accent"
                     >
                         <account.Icon size={22} />
                     </NavLink>
@@ -161,10 +161,13 @@ const Navbar = () => {
                         to="/cart"
                         onClick={closeMenu}
                         aria-label={cartLabel}
-                        className="relative hover:text-accent aria-[current=page]:text-accent"
+                        className="inline-flex items-center justify-center size-11 hover:text-accent aria-[current=page]:text-accent"
                     >
-                        <ShoppingCart size={22} />
-                        <CartCount count={count} />
+                        {/* The bubble is placed against this span, so it stays on the icon's corner. */}
+                        <span className="relative">
+                            <ShoppingCart size={22} />
+                            <CartCount count={count} />
+                        </span>
                     </NavLink>
                 </div>
             </nav>
@@ -196,13 +199,13 @@ const SearchToggle = ({ isOpen, onToggle, controls, showLabel = false }) => (
         aria-expanded={isOpen}
         aria-controls={controls}
         aria-label={isOpen ? 'Close search' : 'Open search'}
-        className="flex flex-col items-center hover:text-accent transition-all group"
+        className={`flex flex-col items-center justify-center hover:text-accent transition-all group ${showLabel ? 'min-w-6 min-h-6' : 'size-11'}`}
     >
         <span className="group-hover:scale-110 transition-transform">
             {isOpen ? <X size={showLabel ? 20 : 22} /> : <Search size={showLabel ? 20 : 22} />}
         </span>
         {showLabel && (
-            <span className="hidden lg:block text-[8px] uppercase font-bold mt-1 tracking-tighter">
+            <span className="hidden lg:block text-[11px] uppercase font-bold mt-1 tracking-tighter">
                 {isOpen ? 'Close' : 'Search'}
             </span>
         )}

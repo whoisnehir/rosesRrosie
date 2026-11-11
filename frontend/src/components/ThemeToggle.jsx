@@ -12,12 +12,15 @@ const ThemeToggle = () => {
             onClick={toggleTheme}
             aria-label={label}
             title={label}
-            className="flex flex-col items-center cursor-poiner hover:text-accent transition-all group"
+            className="flex flex-col items-center justify-center min-w-6 min-h-6 cursor-pointer hover:text-accent transition-all group"
         >
             <span className="group-hover:scale-110 transition-transform">
                 {isDark ? <Sun size={20} /> : <Moon size={20} />}
             </span>
-            <span className="text-[8px] uppercase font-bold mt-1 tracking-tighter">{isDark ? 'Light' : 'Dark'}</span>
+            {/* Hidden only on tablets (768–1023px), like the other header labels; the phone menu and desktop keep it. */}
+            <span className="md:max-lg:hidden text-[11px] uppercase font-bold mt-1 tracking-tighter">
+                {isDark ? 'Light' : 'Dark'}
+            </span>
         </button>
     );
 };

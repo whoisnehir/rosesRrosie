@@ -66,7 +66,7 @@ const ProductPage = () => {
             <ProductGallery images={images} productName={name} />
 
             <div className="mt-10 max-w-2xl mx-auto text-center">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-secondary">{collectionName}</p>
+                <p className="text-xs font-bold uppercase tracking-widest text-secondary">{collectionName}</p>
                 <h1 className="mt-2 text-4xl lg:text-5xl text-ink font-light">{name}</h1>
                 <p className="mt-4 text-xl text-ink">{formatPrice(price)}</p>
                 <p className="mt-6 leading-relaxed">{description}</p>

@@ -21,7 +21,7 @@ const ProductCard = ({ product }) => {
                         className="w-full h-auto rounded-xl transition-opacity group-hover:opacity-90"
                     />
                 )}
-                <p className="mt-4 text-[10px] font-bold uppercase tracking-widest text-secondary">{collectionName}</p>
+                <p className="mt-4 text-xs font-bold uppercase tracking-widest text-secondary">{collectionName}</p>
                 <h2 className="mt-1 text-xl text-ink transition-colors group-hover:text-accent">{name}</h2>
                 <div className="mt-2 flex items-center justify-between">
                     <span className="text-sm text-ink">{formatPrice(price)}</span>
