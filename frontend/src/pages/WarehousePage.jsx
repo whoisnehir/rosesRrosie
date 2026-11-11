@@ -1,28 +1,73 @@
-import { MapPin, Warehouse } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { MapPin } from 'lucide-react';
+import { warehouseService } from '../services/warehouseService';
 
-const WarehousePage = () => (
-    <div className="flex-1 p-12 font-serif text-ink">
-        <h1 className="text-4xl text-center mb-12 italic text-secondary">Our Magical Warehouses</h1>
-        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-            <WarehouseCard city="Bucharest" address="Central Rose Garden, Sector 1" stock="High" />
-            <WarehouseCard city="Cluj-Napoca" address="Transylvanian Bloom St. 45" stock="Medium" />
-        </div>
-    </div>
-);
+// The rosesRrosie locations as a simple list: a pin, the city and the address of each one.
+const WarehousePage = () => {
+    const [warehouses, setWarehouses] = useState([]);
+    // 'loading' while waiting for the service, then 'ready' or 'error'.
+    const [status, setStatus] = useState('loading');
 
-const WarehouseCard = ({ city, address, stock }) => (
-    <div className="bg-card p-8 rounded-4xl border-2 border-line shadow-lg">
-        <div className="flex items-center gap-4 mb-4 text-accent">
-            <Warehouse size={32} />
-            <h2 className="text-2xl font-bold uppercase tracking-widest">{city}</h2>
-        </div>
-        <p className="text-secondary flex items-center gap-2">
-            <MapPin size={16} /> {address}
-        </p>
-        <div className="mt-6 text-[10px] font-bold uppercase tracking-widest text-ink">
-            Availability: <span className="text-green-400">{stock} Stock</span>
-        </div>
-    </div>
-);
+    useEffect(() => {
+        // Stops a late answer from updating the page after the visitor has left it.
+        let isCurrent = true;
+
+        warehouseService
+            .getAll()
+            .then((data) => {
+                if (isCurrent) {
+                    setWarehouses(data);
+                    setStatus('ready');
+                }
+            })
+            .catch((error) => {
+                console.error('Could not load the locations:', error);
+                if (isCurrent) {
+                    setStatus('error');
+                }
+            });
+
+        return () => {
+            isCurrent = false;
+        };
+    }, []);
+
+    return (
+        <section className="w-full max-w-5xl mx-auto px-6 lg:px-8 py-12">
+            <h1 className="text-5xl text-ink font-light text-center">Our Warehouses</h1>
+            <p className="mt-4 text-center text-secondary italic">Where every rosesRrosie order is gathered and sent.</p>
+
+            {status === 'loading' && (
+                <p role="status" className="mt-10 text-center text-secondary italic">
+                    Loading the locations...
+                </p>
+            )}
+
+            {status === 'error' && (
+                <p role="alert" className="mt-10 text-center text-secondary italic">
+                    We could not load the locations. Please try again later.
+                </p>
+            )}
+
+            {status === 'ready' && warehouses.length === 0 && (
+                <p className="mt-10 text-center text-secondary italic">There are no locations yet.</p>
+            )}
+
+            {status === 'ready' && warehouses.length > 0 && (
+                <ul className="mt-12 max-w-2xl mx-auto divide-y divide-line/60 border-y border-line/60">
+                    {warehouses.map(({ id, city, address }) => (
+                        <li key={id} className="py-6 flex items-start gap-4">
+                            <MapPin size={22} className="mt-1 shrink-0 text-accent" aria-hidden="true" />
+                            <div>
+                                <h2 className="text-xs font-bold uppercase tracking-widest text-ink">{city}</h2>
+                                <p className="mt-1 text-secondary">{address}</p>
+                            </div>
+                        </li>
+                    ))}
+                </ul>
+            )}
+        </section>
+    );
+};
 
 export default WarehousePage;
