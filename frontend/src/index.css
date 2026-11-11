@@ -31,6 +31,9 @@
 
     /* Borders and dividers */
     --color-line: #e8b4b8;
+    /* Admin panel navigation: a deeper cacao than the page, so it stays dark in this theme */
+    --color-sidebar: #3a2a24;
+    --color-on-sidebar: #f3e4dc;
 }
 
 /* Dark theme ("Cacao"): the same tokens with new values, active when <html> has the "dark" class. */
@@ -59,6 +62,9 @@
 
     /* Borders and dividers */
     --color-line: #9a7175;
+    /* Admin panel navigation: a deeper cacao than the page, so it stays dark in this theme */
+    --color-sidebar: #3a2a24;
+    --color-on-sidebar: #f3e4dc;
 }
 
 /* Default styles for plain elements. Inside the base layer, Tailwind classes such as font-script win over them. */
