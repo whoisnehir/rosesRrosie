@@ -121,7 +121,7 @@ const HeroSlider = ({ slides }) => {
                         <div className="absolute inset-0 bg-linear-to-r from-black/65 via-black/30 to-transparent" />
 
                         <div className="relative h-full max-w-7xl mx-auto px-6 lg:px-8 flex flex-col justify-center text-white">
-                            <h2 className="font-script text-6xl md:text-8xl leading-none">{name}</h2>
+                            <h2 className="font-script text-5xl sm:text-6xl md:text-8xl leading-none">{name}</h2>
                             <p className="mt-4 max-w-md text-base md:text-lg">{tagline}</p>
                             <Link
                                 to={`/collections/${slug}`}

@@ -71,8 +71,8 @@ const Profile = () => {
         );
 
     return (
-        <div className="flex-1 flex items-center justify-center p-8 font-serif">
-            <div className="max-w-4xl w-full bg-card shadow-2xl rounded-[3rem] border-[6px] border-line relative overflow-hidden flex flex-col md:flex-row min-h-150">
+        <div className="flex-1 flex items-center justify-center p-4 md:p-8 font-serif">
+            <div className="max-w-4xl w-full bg-card shadow-2xl rounded-4xl md:rounded-[3rem] border-4 md:border-[6px] border-line relative overflow-hidden flex flex-col md:flex-row min-h-150">
                 {/* Back: to the shop from the dashboard, to the dashboard from the other views */}
                 <button
                     onClick={() => (view === 'dashboard' ? navigate('/') : setView('dashboard'))}
@@ -82,7 +82,7 @@ const Profile = () => {
                 </button>
 
                 {/* SIDEBAR: Info */}
-                <div className="md:w-1/3 bg-surface p-10 pt-24 flex flex-col items-center border-r-2 border-line/30">
+                <div className="md:w-1/3 bg-surface p-6 pt-20 md:p-10 md:pt-24 flex flex-col items-center border-r-2 border-line/30">
                     <div className="w-32 h-32 rounded-full border-4 border-card shadow-lg bg-card flex items-center justify-center text-accent mb-6">
                         <User size={60} />
                     </div>
@@ -105,7 +105,7 @@ const Profile = () => {
                 </div>
 
                 {/* MAIN CONTENT Area */}
-                <div className="md:w-2/3 p-14 pt-24 relative">
+                <div className="md:w-2/3 p-6 md:p-14 md:pt-24 relative">
                     {/* View 1: DASHBOARD */}
                     {view === 'dashboard' && (
                         <div className="space-y-8 animate-in fade-in duration-500">
@@ -225,7 +225,7 @@ const Profile = () => {
 const MenuButton = ({ icon, title, desc, onClick }) => (
     <button
         onClick={onClick}
-        className="w-full flex items-center gap-6 p-6 rounded-3xl bg-page border-2 border-transparent hover:border-line hover:bg-card transition-all text-left group"
+        className="w-full flex items-center gap-4 p-4 md:gap-6 md:p-6 rounded-3xl bg-page border-2 border-transparent hover:border-line hover:bg-card transition-all text-left group"
     >
         <div className="p-4 bg-card rounded-2xl text-accent group-hover:text-ink shadow-sm transition-colors">
             {icon}

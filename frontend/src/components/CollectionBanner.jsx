@@ -13,7 +13,7 @@ const CollectionBanner = ({ image, name, tagline, headingLevel = 'h2', action })
             {/* On a phone the whole image is darkened, because the text covers most of it; on wider screens only the left side. */}
             <div className="absolute inset-0 bg-black/45 md:bg-transparent md:bg-linear-to-r md:from-black/65 md:via-black/30 md:to-transparent" />
             <div className="relative h-full max-w-7xl mx-auto px-6 lg:px-8 flex flex-col justify-center text-white">
-                <Heading className="font-script text-6xl md:text-8xl leading-none">{name}</Heading>
+                <Heading className="font-script text-5xl sm:text-6xl md:text-8xl leading-none">{name}</Heading>
                 <p className="mt-4 max-w-md text-base md:text-lg">{tagline}</p>
                 {action}
             </div>

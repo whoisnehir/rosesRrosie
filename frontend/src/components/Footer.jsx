@@ -51,7 +51,8 @@ const Footer = ({ onOpenCookieSettings }) => (
             ))}
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-5 flex flex-col items-center gap-2 text-xs text-muted md:flex-row md:justify-between">
+        {/* The right side stays free, so the floating buttons never cover this last line (or Cookie settings). */}
+        <div className="max-w-7xl mx-auto pl-6 lg:pl-8 pr-20 py-5 flex flex-col items-start gap-2 text-xs text-muted md:flex-row md:items-center md:justify-between">
             <p>© {new Date().getFullYear()} rosesRrosie · Demo project. No real products are sold.</p>
             {onOpenCookieSettings && (
                 <button type="button" onClick={onOpenCookieSettings} className="underline hover:text-accent">
