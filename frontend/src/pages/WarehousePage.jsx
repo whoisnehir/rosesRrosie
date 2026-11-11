@@ -35,7 +35,9 @@ const WarehousePage = () => {
     return (
         <section className="w-full max-w-5xl mx-auto px-6 lg:px-8 py-12">
             <h1 className="text-5xl text-ink font-light text-center">Our Warehouses</h1>
-            <p className="mt-4 text-center text-secondary italic">Where every rosesRrosie order is gathered and sent.</p>
+            <p className="mt-4 text-center text-secondary italic">
+                Where every rosesRrosie order is gathered and sent.
+            </p>
 
             {status === 'loading' && (
                 <p role="status" className="mt-10 text-center text-secondary italic">
