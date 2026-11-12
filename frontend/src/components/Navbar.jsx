@@ -15,11 +15,10 @@ const iconLinks = [
     { to: '/warehouses', label: 'Warehouses', Icon: Warehouse },
     { to: '/wishlist', label: 'Wishlist', Icon: Heart },
     { to: '/cart', label: 'Cart', Icon: ShoppingCart },
-    { to: '/profile', label: 'Profile', Icon: User },
 ];
 
-// On phones, Profile and Cart sit in the header itself, so the menu panel lists only the other pages.
-const mobileMenuIconLinks = iconLinks.filter(({ to }) => to !== '/profile' && to !== '/cart');
+// On phones, the cart (and the account link) sit in the header itself, so the menu panel lists only the other pages.
+const mobileMenuIconLinks = iconLinks.filter(({ to }) => to !== '/cart');
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -30,12 +29,13 @@ const Navbar = () => {
     const { count } = useCart();
     const { session } = useAuth();
     // Signed in: the account icon leads to the profile (or the admin panel) and says so; otherwise to Sign in.
+    // label is the full name for screen readers; shortLabel is the word shown under the icon on desktop.
     const account =
         session === null
-            ? { to: '/login', label: 'Sign in', Icon: User }
+            ? { to: '/login', label: 'Sign in', shortLabel: 'Sign in', Icon: User }
             : session.role === 'ADMIN'
-              ? { to: '/admin', label: 'Admin panel, signed in', Icon: UserCheck }
-              : { to: '/profile', label: 'Profile, signed in', Icon: UserCheck };
+              ? { to: '/admin', label: 'Admin panel, signed in', shortLabel: 'Admin', Icon: UserCheck }
+              : { to: '/profile', label: 'Profile, signed in', shortLabel: 'Profile', Icon: UserCheck };
     // The cart's name for screen readers says how many pieces it holds, because the bubble is only seen.
     const cartLabel = count === 0 ? 'Cart' : `Cart, ${count} ${count === 1 ? 'item' : 'items'}`;
 
@@ -128,7 +128,7 @@ const Navbar = () => {
                         <div className="hidden md:flex items-center gap-3 lg:gap-6">
                             <SearchToggle isOpen={false} onToggle={toggleSearch} controls="desktop-search" showLabel />
                             <ThemeToggle />
-                            {iconLinks.map(({ to, label, Icon }) => (
+                            {[...iconLinks, account].map(({ to, label, shortLabel = label, Icon }) => (
                                 <NavLink
                                     key={to}
                                     to={to}
@@ -140,7 +140,7 @@ const Navbar = () => {
                                         {to === '/cart' && <CartCount count={count} />}
                                     </span>
                                     <span className="hidden lg:block text-[11px] uppercase font-bold mt-1 tracking-tighter">
-                                        {label}
+                                        {shortLabel}
                                     </span>
                                 </NavLink>
                             ))}
@@ -150,9 +150,9 @@ const Navbar = () => {
 
                 <div className="flex md:hidden items-center justify-end -mr-2.5">
                     <NavLink
-                        to="/profile"
+                        to={account.to}
                         onClick={closeMenu}
-                        aria-label="Profile"
+                        aria-label={account.label}
                         className="inline-flex items-center justify-center size-11 hover:text-accent aria-[current=page]:text-accent"
                     >
                         <account.Icon size={22} />
